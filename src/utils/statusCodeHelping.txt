@@ -1,0 +1,9 @@
+status code 
+
+200 -> successfull get, put, delete request
+201 -> created successfull post request
+400 -> bed request invalid parameters
+401 -> unauthorized: authentification failure
+403 -> forbidden: permission issues
+404 -> Not found resource not found
+500 -> internal server side error
