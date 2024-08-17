@@ -5,6 +5,7 @@ import { Transport } from "../models/transport.model.js";
 import { uploadOnCloudinary, deleteOnCloudinary } from "../utils/cloudnairy.js";
 
 const createTransport = asyncHandler( async (req,res) => {
+    const {} = req.body;
 
 
     return res.send("listning on the create transport route");
