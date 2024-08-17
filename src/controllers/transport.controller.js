@@ -6,9 +6,23 @@ import { uploadOnCloudinary, deleteOnCloudinary } from "../utils/cloudnairy.js";
 
 const createTransport = asyncHandler( async (req,res) => {
     const {transport_type, provider, route, schedule, price, capacity} = req.body;
+    if(!transport_type && !provider && !route && !schedule && !price && !capacity)
+        throw new ApiError(400,"This all fields are required");
+    
+    const transport = await Transport.create({
+        transport_type,
+        provider,
+        route,
+        schedule,
+        price,
+        capacity
+    });
+
+    if(!transport) throw new ApiError(400,"The transport not created");
+        
 
 
-    return res.send("listning on the create transport route");
+    return res.status(200).json(new ApiResponce(200, transport, "Transport created successfully"));
 });
 
 const updateTransport = asyncHandler( async (req,res) => {
