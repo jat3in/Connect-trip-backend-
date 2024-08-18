@@ -8,6 +8,12 @@ const TransportSchema = Schema({
         index: true,
         required: true,
     },
+    transport_thumbnail: {
+        type: String,
+    },
+    transport_images: [{
+        type: String,
+    }],
     provider: {
         type: String,
         required: true,
