@@ -108,9 +108,11 @@ const getTransportById = asyncHandler( async (req,res) => {
 });
 
 const deleteTransport = asyncHandler(async (req,res) => {
+    const {id} = req.params;
+    await Tranport.findOneAndDelete({id});
 
 
-    return res.send("listning on delete transport route")
+    return res.status(200).json(new ApiResponce(200,{},"tranport deleted successfully"))
 });
 
 export { createTransport, updateImagesTransport, updateThumbnailTransport, deleteTransport, getAllTransport, getTransportById, updateTransport}
