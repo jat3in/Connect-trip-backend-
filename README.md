@@ -234,6 +234,41 @@ http://localhost:8000/api/v1/package/package/:id
 http://localhost:8000/api/v1/package/delete-package/:id
 ```
 
+## Transport
+
+1. Created transport Api : POST
+```
+http://localhost:8000/api/v1/transport/create-transport
+```
+
+2. Update transport By Id Api : PATCH
+```
+http://localhost:8000/api/v1/transport/update-transport/:id
+```
+
+3. transport Thumbnail Update By Id Api : PATCH
+```
+http://localhost:8000/api/v1/transport/update-thumbnail/:id
+```
+
+4. transport Images Update By Id Api : PATCH
+```
+http://localhost:8000/api/v1/transport/update-images/:id
+```
+5. Get All transports Api : GET
+```
+http://localhost:8000/api/v1/transport/get-transport
+```
+
+6. Get transports By Id Api : GET
+```
+http://localhost:8000/api/v1/transport/get-transport/:id
+```
+
+7. Delete transport By Id Api : DELETE
+```
+http://localhost:8000/api/v1/transport/delete-transport/:id
+```
 
 ## Flights
 
