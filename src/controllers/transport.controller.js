@@ -91,10 +91,11 @@ const updateImagesTransport = asyncHandler( async (req,res) => {
 });
 
 const getAllTransport = asyncHandler( async (req,res) => {
-    
+    const transport = await Transport.find();
+    if(!tranport) throw new ApiError(400,"Not found any tranport");
 
 
-    return res.send("listning on the get all transport route");
+    return res.status(200).json(new ApiResponce(200,tranport,"All Transport found successfully"));
 });
 
 const getTransportById = asyncHandler( async (req,res) => {
