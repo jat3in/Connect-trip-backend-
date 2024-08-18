@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { createTransport, getTransportById, updateImagesTransport, updateThumbnailTransport, updateTransport, deleteTransport, getAllTransport } from "../controllers/transport.controller.js";
+import { upload } from "../middlewares/multer.middleware.js";
 
 const router = Router();
 
