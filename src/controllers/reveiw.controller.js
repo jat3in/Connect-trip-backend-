@@ -22,3 +22,9 @@ const deleteReveiw = asyncHandler( async (req,res) => {
 
     return res.send("delete reveiw controller added successfully");
 });
+
+const getReview = asyncHandler( async (req,res) => {
+
+
+    return res.send("get all reveiw successfully");
+});
