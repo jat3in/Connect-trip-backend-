@@ -62,6 +62,12 @@ import transportRouter from "./routes/transport.route.js";
 
 app.use("/api/v1/transport", transportRouter);
 
+// reveiew routes goes here...
+
+import reveiwRouter from "./routes/reveiw.route.js";
+
+app.use("/api/v1/reveiw", reveiwRouter);
+
 
 
 
