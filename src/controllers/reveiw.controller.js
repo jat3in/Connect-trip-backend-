@@ -28,3 +28,10 @@ const getReview = asyncHandler( async (req,res) => {
 
     return res.send("get all reveiw successfully");
 });
+
+const getReviewId = asyncHandler( async (req,res) => {
+
+
+    return res.send("get reveiew by id");
+});
+
