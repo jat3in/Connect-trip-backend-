@@ -9,4 +9,10 @@ const createReview = asyncHandler( async (req,res) => {
 
 
     return res.send("create reveiw controller")
-})
+});
+
+const editReview = asyncHandler( async (req,res) => {
+
+
+    return res.send("edit reveiw controller");
+});
