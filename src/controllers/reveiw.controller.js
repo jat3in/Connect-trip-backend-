@@ -35,3 +35,4 @@ const getReviewId = asyncHandler( async (req,res) => {
     return res.send("get reveiew by id");
 });
 
+export { createReview, editReview, deleteReveiw, getReviewId, getReview}
