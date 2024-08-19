@@ -270,6 +270,33 @@ http://localhost:8000/api/v1/transport/get-transport/:id
 http://localhost:8000/api/v1/transport/delete-transport/:id
 ```
 
+## Ratings
+
+1. Created Reveiw Api : POST
+```
+http://localhost:8000/api/v1/reveiw/reveiw-create
+```
+
+2. Update Reveiw By Id Api : PATCH
+```
+http://localhost:8000/api/v1/reveiw/reveiw-edit/:id
+```
+
+3. Get All reveiws Api : GET
+```
+http://localhost:8000/api/v1/reveiw/get-reveiw
+```
+
+4. Get All reveiws By Id Api : GET
+```
+http://localhost:8000/api/v1/reveiw/get-reveiw/:id
+```
+
+5. Delete Reveiws By Id Api : DELETE
+```
+http://localhost:8000/api/v1/reveiw/delete-reveiw/:id
+```
+
 ## Flights
 
 1. Flights Search From Departure To Arrival Api : GET
