@@ -16,3 +16,9 @@ const editReview = asyncHandler( async (req,res) => {
 
     return res.send("edit reveiw controller");
 });
+
+const deleteReveiw = asyncHandler( async (req,res) => {
+
+
+    return res.send("delete reveiw controller added successfully");
+});
