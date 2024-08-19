@@ -5,3 +5,8 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { uploadOnCloudinary, deleteOnCloudinary } from "../utils/cloudnairy.js";
 
 
+const createReview = asyncHandler( async (req,res) => {
+
+
+    return res.send("create reveiw controller")
+})
