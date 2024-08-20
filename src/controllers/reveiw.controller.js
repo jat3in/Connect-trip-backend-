@@ -60,9 +60,12 @@ const getReview = asyncHandler( async (req,res) => {
 });
 
 const getReviewId = asyncHandler( async (req,res) => {
+    const {id} = req.params;
+    const ratings = await ReviewRatings.findOne({id});
+    if(!ratings) throw new ApiError(400,"Not have Any ratings")
 
 
-    return res.send("get reveiew by id");
+    return res.status(200).json(new ApiResponce(200,ratings,"Ratings by id fetched successfully"));
 });
 
 export { createReview, editReview, deleteReveiw, getReviewId, getReview}
