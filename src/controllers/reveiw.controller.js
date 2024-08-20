@@ -23,9 +23,22 @@ const createReview = asyncHandler( async (req,res) => {
 });
 
 const editReview = asyncHandler( async (req,res) => {
+    const {id} = req.params;
+
+    const {ratings, commments, date} = req.body;
+    if(!ratings && !commments && !date) throw new ApiError(400,"this all fileds are required to create reveiw");
 
 
-    return res.send("edit reveiw controller");
+    const rating = await ReviewRatings.findOneAndUpdate({id},{
+        $set: {
+        ratings,
+        commments,
+        date
+        }
+    },{new : true});
+
+    if(!rating) new ApiError(400,"the ratings not updated");
+    return res.status(200).json(new ApiResponce(200, rating," Reveiw and ratings updated successfully"));
 });
 
 const deleteReveiw = asyncHandler( async (req,res) => {
