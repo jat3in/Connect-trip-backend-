@@ -42,9 +42,12 @@ const editReview = asyncHandler( async (req,res) => {
 });
 
 const deleteReveiw = asyncHandler( async (req,res) => {
+    const {id} = req.params;
+
+    await ReviewRatings.findOneAndDelete({id});
 
 
-    return res.send("delete reveiw controller added successfully");
+    return res.status(200).json(new ApiResponce(200,{},"Reveiws And Ratings deleted successfully"));
 });
 
 const getReview = asyncHandler( async (req,res) => {
