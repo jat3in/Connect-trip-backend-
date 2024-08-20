@@ -52,8 +52,11 @@ const deleteReveiw = asyncHandler( async (req,res) => {
 
 const getReview = asyncHandler( async (req,res) => {
 
+    const ratings = await ReviewRatings.find();
+    if(!ratings) throw new ApiError(400,"Not have Any ratings")
 
-    return res.send("get all reveiw successfully");
+
+    return res.status(200).json(new ApiResponce(200,ratings,"All Ratings find successfully"));
 });
 
 const getReviewId = asyncHandler( async (req,res) => {
