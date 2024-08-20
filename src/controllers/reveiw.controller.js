@@ -6,9 +6,20 @@ import { uploadOnCloudinary, deleteOnCloudinary } from "../utils/cloudnairy.js";
 
 
 const createReview = asyncHandler( async (req,res) => {
+    const {ratings, commments, date} = req.body;
+    if(!ratings && !commments && !date) throw new ApiError(400,"this all fileds are required to create reveiw");
 
 
-    return res.send("create reveiw controller")
+    const rating = await ReviewRatings.create({
+        ratings,
+        commments,
+        date
+    });
+
+    if(!rating) new ApiError(400,"the ratings not created");
+
+
+    return res.status(200).json(new ApiResponce(200,rating,"Ratings created successfully"));
 });
 
 const editReview = asyncHandler( async (req,res) => {
