@@ -31,7 +31,7 @@ const {id} = req.params;
     if(!transport_type && !provider && !route && !schedule && !price && !capacity)
         throw new ApiError(400,"This all fields are required");
 
-    const transport = await Transport.findOneAndUdpate({_id:id},{
+    const transport = await Transport.findOneAndUpdate({_id:id},{
         $set: {
             transport_type,
             provider,
