@@ -9,8 +9,8 @@ router.route("/create-package").post(verifyJwt,upload.fields([{name: "package_th
 router.route("/update-package/:id").patch(verifyJwt,updatePackage);
 router.route("/update-package-thumbnail/:id").patch(verifyJwt,upload.single("package_thumbnail"),updateThumbnailPackage);
 router.route("/update-package-images/:id").patch(verifyJwt,upload.array("package_images",5),updateImagePackage);
-router.route("/package/:id").get(verifyJwt,getAllPackageById);
-router.route("/package").get(verifyJwt,getAllPackage);
+router.route("/package/:id").get(getAllPackageById);
+router.route("/package").get(getAllPackage);
 router.route("/delete-package/:id").delete(verifyJwt,deletePackage);
 
 

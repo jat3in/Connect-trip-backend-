@@ -18,8 +18,8 @@ router.route("/register-destination").post(verifyJwt,upload.fields([{
 router.route("/update-destination/:id").patch(verifyJwt,updateDestinationById);
 router.route("/update-destthumbnail/:id").patch(verifyJwt,upload.single("destThumbnail"),updateThumbnailById);
 router.route("/update-destimages/:id").patch(verifyJwt,upload.array("destImage",5),updateDesttinationImage);
-router.route("/get-destination").get(verifyJwt,getAllDestination);
-router.route("/get-destination/:id").get(verifyJwt,getDestionById);
+router.route("/get-destination").get(getAllDestination);
+router.route("/get-destination/:id").get(getDestionById);
 router.route("/delete-destination/:id").delete(verifyJwt,deleteDestinationById);
 
 

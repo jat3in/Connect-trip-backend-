@@ -16,8 +16,8 @@ router.route("/update-accomodation/:id").patch(verifyJwt,updateAccomodationById)
 router.route("/update-accomodation-images/:id").patch(verifyJwt,upload.array("accomodation_images",5),updateAccomodationImageById);
 router.route("/update-accomodation-thumbnail/:id").patch(verifyJwt,upload.single("accomodation_thumbnail"),updateAccomodationThumbnail);
 router.route("/delete-accomodation/:id").delete(verifyJwt,deleteAccomodationById);
-router.route("/accomodation/:id").get(verifyJwt,getAccomodationById);
-router.route("/accomodation").get(verifyJwt,getAllAccomodation);
+router.route("/accomodation/:id").get(getAccomodationById);
+router.route("/accomodation").get(getAllAccomodation);
 
 
 

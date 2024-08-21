@@ -9,8 +9,8 @@ router.route("/create-transport").post(verifyJwt,createTransport);
 router.route("/update-transport/:id").patch(verifyJwt,updateTransport);
 router.route("/update-thumbnail/:id").patch(verifyJwt,upload.single("transport_thumbnail"),updateThumbnailTransport);
 router.route("/update-images/:id").patch(verifyJwt,upload.array("transport_images",5),updateImagesTransport);
-router.route("/get-transport/:id").get(verifyJwt,getTransportById);
-router.route("/get-transport").get(verifyJwt,getAllTransport);
+router.route("/get-transport/:id").get(getTransportById);
+router.route("/get-transport").get(getAllTransport);
 router.route("/delete-transport/:id").delete(verifyJwt,deleteTransport);
 
 

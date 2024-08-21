@@ -6,8 +6,8 @@ const router = Router();
 router.route("/reveiw-create").post(verifyJwt,createReview);
 router.route("/reveiw-edit/:id").patch(verifyJwt,updateReview);
 router.route("/delete-reveiw/:id").delete(verifyJwt,deleteReveiw);
-router.route("/get-reveiw").get(verifyJwt,getReview);
-router.route("/get-reveiw/:id").get(verifyJwt,getReviewId);
+router.route("/get-reveiw").get(getReview);
+router.route("/get-reveiw/:id").get(getReviewId);
 
 
 

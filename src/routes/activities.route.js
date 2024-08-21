@@ -17,8 +17,8 @@ router.route("/create-activity").post(upload.fields([{
 router.route("/update-activity/:id").patch(verifyJwt,updateActivity);
 router.route("/update-activity-thumbnail/:id").patch(verifyJwt,upload.single("activityThumbnail"), updateActivityThumbnailById);
 router.route("/update-activity-images/:id").patch(verifyJwt,upload.array("activity_images",5), updateActivityImagesById);
-router.route("/get-all-activity/:id").get(verifyJwt,getActivityById);
-router.route("/get-all-activity").get(verifyJwt,getAllAcitivity);
+router.route("/get-all-activity/:id").get(getActivityById);
+router.route("/get-all-activity").get(getAllAcitivity);
 router.route("/delete-activity/:id").delete(verifyJwt,deleteActivity);
 
 
