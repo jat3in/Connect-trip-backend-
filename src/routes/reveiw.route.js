@@ -1,12 +1,13 @@
 import { Router } from "express";
-import { createReview, editReview, deleteReveiw, getReviewId, getReview} from "../controllers/reveiw.controller.js";
+import { verifyJwt } from "../middlewares/auth.middleware.js";
+import { createReview, updateReview, deleteReveiw, getReviewId, getReview} from "../controllers/reveiw.controller.js";
 const router = Router();
 
-router.route("/reveiw-create").post(createReview);
-router.route("/reveiw-edit").patch(editReview);
-router.route("/delete-reveiw").delete(deleteReveiw);
-router.route("/get-reveiw").get(getReview);
-router.route("/get-reveiw/:id").get(getReviewId);
+router.route("/reveiw-create").post(verifyJwt,createReview);
+router.route("/reveiw-edit/:id").patch(verifyJwt,updateReview);
+router.route("/delete-reveiw/:id").delete(verifyJwt,deleteReveiw);
+router.route("/get-reveiw").get(verifyJwt,getReview);
+router.route("/get-reveiw/:id").get(verifyJwt,getReviewId);
 
 
 

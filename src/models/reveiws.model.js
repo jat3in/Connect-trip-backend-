@@ -12,6 +12,14 @@ const EntitySchema = Schema({
     activity_id: {
         type: Schema.Types.ObjectId,
         ref: "activity"
+    },
+    holiday_id: {
+        type: Schema.Types.ObjectId,
+        ref: "holiday"
+    },
+    package_id: {
+        type: Schema.Types.ObjectId,
+        ref: "package"
     }
 })
 
@@ -37,6 +45,7 @@ const ReviewSchema = Schema({
     },
     date: {
         type: Date,
+        default: new Date,
     }
 
 },{timestamps: true})
