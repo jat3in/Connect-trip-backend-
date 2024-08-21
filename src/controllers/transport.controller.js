@@ -100,16 +100,16 @@ const getAllTransport = asyncHandler( async (req,res) => {
 
 const getTransportById = asyncHandler( async (req,res) => {
     const {id} = req.params;
-    const transport = await Transport.findOne({id});
-    if(!tranport) throw new ApiError(400,"The Tranport id does not exists");
+    const transport = await Transport.findOne({_id:id});
+    if(!transport) throw new ApiError(400,"The Tranport id does not exists");
 
 
-    return res.status(200).json(new ApiResponce(200,tranport,"Tranport find by id successfully"));
+    return res.status(200).json(new ApiResponce(200,transport,"Tranport find by id successfully"));
 });
 
 const deleteTransport = asyncHandler(async (req,res) => {
     const {id} = req.params;
-    await Tranport.findOneAndDelete({id});
+    await Transport.findOneAndDelete({_id:id});
 
 
     return res.status(200).json(new ApiResponce(200,{},"tranport deleted successfully"))
