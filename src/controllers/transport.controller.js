@@ -78,7 +78,7 @@ const updateImagesTransport = asyncHandler( async (req,res) => {
     const transport_images = await uploadOnCloudinary(transportImagesLocalPath);
     if(!transport_images) throw new ApiError(400,"Transport Images not uploaded on server");
 
-    const updateTransportImages = await Transport.findOneAndUpdate({id},{
+    const updateTransportImages = await Transport.findOneAndUpdate({_id:id},{
         $set: {
             transport_images: transport_images.url
         }
@@ -92,10 +92,10 @@ const updateImagesTransport = asyncHandler( async (req,res) => {
 
 const getAllTransport = asyncHandler( async (req,res) => {
     const transport = await Transport.find();
-    if(!tranport) throw new ApiError(400,"Not found any tranport");
+    if(!transport) throw new ApiError(400,"Not found any tranport");
 
 
-    return res.status(200).json(new ApiResponce(200,tranport,"All Transport found successfully"));
+    return res.status(200).json(new ApiResponce(200,transport,"All Transport found successfully"));
 });
 
 const getTransportById = asyncHandler( async (req,res) => {
