@@ -52,7 +52,7 @@ const {id} = req.params;
 const updateThumbnailTransport = asyncHandler( async (req,res) => {
     const {id} = req.params;
     const thumbnailLocalPath = req.file?.path;
-    console.log(thumbnailLocalPath);
+    // console.log(thumbnailLocalPath);
 
     if(!thumbnailLocalPath) throw new ApiError(400,"The thumbnail file is required");
     const transport_thumbnail = await uploadOnCloudinary(thumbnailLocalPath);
