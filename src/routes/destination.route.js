@@ -6,7 +6,7 @@ import { deleteDestinationById, getAllDestination, getDestionById, registerDesti
 
 const router = Router();
 
-router.route("/register-destination").post(upload.fields([{
+router.route("/register-destination").post(verifyJwt,upload.fields([{
     name: "destThumbnail",
     maxCount: 1,
 },{
@@ -15,12 +15,12 @@ router.route("/register-destination").post(upload.fields([{
     
 }]), registerDestination);
 
-router.route("/update-destination/:id").patch(updateDestinationById);
-router.route("/update-destthumbnail/:id").patch(upload.single("destThumbnail"),updateThumbnailById);
-router.route("/update-destimages/:id").patch(upload.array("destImage",5),updateDesttinationImage);
-router.route("/get-destination").get(getAllDestination);
-router.route("/get-destination/:id").get(getDestionById);
-router.route("/delete-destination/:id").delete(deleteDestinationById);
+router.route("/update-destination/:id").patch(verifyJwt,updateDestinationById);
+router.route("/update-destthumbnail/:id").patch(verifyJwt,upload.single("destThumbnail"),updateThumbnailById);
+router.route("/update-destimages/:id").patch(verifyJwt,upload.array("destImage",5),updateDesttinationImage);
+router.route("/get-destination").get(verifyJwt,getAllDestination);
+router.route("/get-destination/:id").get(verifyJwt,getDestionById);
+router.route("/delete-destination/:id").delete(verifyJwt,deleteDestinationById);
 
 
 export default router;
