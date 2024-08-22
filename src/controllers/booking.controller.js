@@ -23,7 +23,7 @@ const createBooking = asyncHandler( async (req,res) => {
 
     const booking = await Booking.create({
         tourist_id,
-        entitySchema,
+         entity_id : entitySchema,
         travel_date,
         payment_method,
         total_cost

@@ -53,6 +53,12 @@ const BookingSchema = Schema({
         type: Schema.Types.Decimal128,
         index: true,
         required: true,
+    },
+    status: {
+        type: String,
+        enum: ["Pending", "Completed", "Failed", "Refunded"],
+        default: "Pending",
+        required: true,
     }
 
 },{timestamps: true});
