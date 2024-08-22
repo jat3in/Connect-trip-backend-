@@ -68,6 +68,12 @@ import reveiwRouter from "./routes/reveiw.route.js";
 
 app.use("/api/v1/reveiw", reveiwRouter);
 
+// booking routes goes here....
+
+import bookingRouter from "./routes/booking.route.js";
+
+app.use("/api/v1/booking", bookingRouter);
+
 
 
 
