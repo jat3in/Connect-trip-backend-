@@ -4,7 +4,7 @@ const router = Router();
 
 
 router.route("/create-booking").post(createBooking);
-router.route("/update-booking").patch(updateBooking);
+router.route("/update-booking/:id").patch(updateBooking);
 router.route("/get-booking").get(getAllBooking);
 router.route("/get-booking/:id").get(getBookingById);
 router.route("/delete-booking/:id").delete(deleteBooking);

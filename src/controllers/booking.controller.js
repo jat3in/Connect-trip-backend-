@@ -37,9 +37,20 @@ const createBooking = asyncHandler( async (req,res) => {
 
 const updateBooking = asyncHandler( async (req,res) => {
     const {id} = req.params;
-    console.log(id);
+    const {status} = req.body;
+    // console.log(id);
+    const booking = await Booking.findOne({_id:id});
+    if(!booking) throw new ApiError(400,"Booking does not exists");
 
-    return res.send("listning on the booking update routes");
+    const updatedBooking = await Booking.findOneAndUpdate({_id:id},{
+        $set: {
+         status
+        }
+    },{new : true});
+
+    if(!updatedBooking) throw new ApiError(400,"Booking not updated");
+
+    return res.status(200).json(new ApiResponce(200,updatedBooking,"Booking updated Successfully"));
 });
 
 const getAllBooking = asyncHandler( async (req,res) => {
