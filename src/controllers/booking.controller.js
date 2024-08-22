@@ -72,9 +72,10 @@ const getBookingById = asyncHandler( async (req,res) => {
 
 const deleteBooking = asyncHandler( async (req,res) => {
     const {id} = req.params;
-    console.log(id);
+    // console.log(id);
+    await Booking.findOneAndDelete({_id:id});
 
-    return res.send("listning on the delete booking routes");
+    return res.status(200).json(new ApiResponce(200,{},"Booking Deleted Successfully"));
 });
 
 
