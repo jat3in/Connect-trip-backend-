@@ -39,11 +39,6 @@ const BookingSchema = Schema({
         required: true,
         index: true
     },
-    booking_date: {
-        type: Date,
-        default: new Date,
-        index: true,
-    },
     travel_date: { 
         type: Date,
         required: true,
