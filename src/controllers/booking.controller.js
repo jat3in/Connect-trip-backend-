@@ -54,9 +54,9 @@ const updateBooking = asyncHandler( async (req,res) => {
 });
 
 const getAllBooking = asyncHandler( async (req,res) => {
-
-
-    return res.send("listning on the get all booking routes");
+    const booking = await Booking.find();
+    if(!booking) throw new ApiError(400,"Booking not found");
+    return res.status(200).json(new ApiResponce(200,booking,"Booking found successfully"));
 });
 
 
