@@ -1,12 +1,13 @@
 import {Router} from "express";
+import {createBooking,updateBooking,getAllBooking,getBookingById,deleteBooking} from "../controllers/booking.controller.js";
 const router = Router();
 
 
-router.route("/create-booking").post();
-router.route("/update-booking").patch();
-router.route("/get-booking").get();
-router.route("/get-booking/:id").get();
-router.route("/delete-booking/:id").delete();
+router.route("/create-booking").post(createBooking);
+router.route("/update-booking").patch(updateBooking);
+router.route("/get-booking").get(getAllBooking);
+router.route("/get-booking/:id").get(getBookingById);
+router.route("/delete-booking/:id").delete(deleteBooking);
 
 
 
