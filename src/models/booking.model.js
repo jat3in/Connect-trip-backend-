@@ -1,5 +1,32 @@
 import mongoose, {Schema} from "mongoose";
 
+const entitySchema = {
+    accomodation_id: {
+        type: Schema.Types.ObjectId,
+        ref: "accomodation"
+    },
+    package_id: {
+        type: Schema.Types.ObjectId,
+        ref: "package"
+    },
+    transport_id: {
+        type: Schema.Types.ObjectId,
+        ref: "transport"
+    },
+    holiday_id:{
+        type: Schema.Types.ObjectId,
+        ref: "holiday"
+    },
+    destination_id: {
+        type: Schema.Types.ObjectId,
+        ref: "destination"
+    },
+    activity_id: {
+        type: Schema.Types.ObjectId,
+        ref: "activity"
+    }
+}
+
 const BookingSchema = Schema({
     tourist_id: {
         type: Schema.Types.ObjectId,
@@ -7,29 +34,14 @@ const BookingSchema = Schema({
         index: true,
         required: true,
     },
-    accomodation_id: {
-        type: Schema.Types.ObjectId,
-        ref: "accomodation",
-        index: true,
-    },
-    package_id: {
-        type: Schema.Types.ObjectId,
-        ref: "package",
-        index: true,
-    },
-    transport_id: {
-        type: Schema.Types.ObjectId,
-        ref: "transport",
-        index: true,
-    },
-    holiday_id:{
-        type: Schema.Types.ObjectId,
-        ref: "holiday",
-        index: true,
+    entity_id: {
+        type: entitySchema,
+        required: true,
+        index: true
     },
     booking_date: {
         type: Date,
-        default: new Date(),
+        default: new Date,
         index: true,
     },
     travel_date: { 
