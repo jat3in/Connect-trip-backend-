@@ -16,7 +16,7 @@ const createAcitivity = asyncHandler( async (req,res) => {
         duration
     });
 
-    if(!activity) throw ApiError(400,"the activity is not created");
+    if(!activity) throw new  ApiError(400,"the activity is not created");
 
     return res.status(200).json(new ApiResponce(200,activity,"Activity created successfully"));
 });
@@ -40,7 +40,7 @@ const updateActivity = asyncHandler( async (req,res) => {
         }
     },{new: true});
 
-    if(!activity) throw new ApiError(400,"Your Activity Id is not valid")
+    if(!activity) throw new  ApiError(400,"Your Activity Id is not valid")
 
     return res.status(200).json(new ApiResponce(200,activity,"Activity Updated successfuly"));
 });
@@ -101,7 +101,7 @@ const getActivityById = asyncHandler( async (req,res) => {
     // console.log(id);
 
     const activity = await Activity.findOne({_id:id});
-    if(!activity) throw ApiError(400,"Not found any activity")
+    if(!activity) throw new  ApiError(400,"Not found any activity")
 
     return res.status(200).json(new ApiResponce(200,activity,"Activity find successfully"));
 

@@ -58,12 +58,12 @@ const updateAccomodationThumbnail = asyncHandler( async (req,res) => {
     const {id} = req.params;
     
     const localThumbnailPath = req.file?.path;
-    if(!localThumbnailPath) throw ApiError(400,"Thumbnail files is required");
+    if(!localThumbnailPath) throw new ApiError(400,"Thumbnail files is required");
     // console.log(localThumbnailPath)
 
     const accomodation_thumbnail = await uploadOnCloudinary(localThumbnailPath);
 
-    if(!accomodation_thumbnail) throw ApiError(400,"The Thumbnail is not uploaded");
+    if(!accomodation_thumbnail) throw new ApiError(400,"The Thumbnail is not uploaded");
 
     const updatedThumbnail = await Accomodation.findOneAndUpdate({_id:id},{
         $set: {
@@ -71,7 +71,7 @@ const updateAccomodationThumbnail = asyncHandler( async (req,res) => {
         }
     },{new: true});
 
-    if(!updatedThumbnail) throw ApiError(400,"Thumbnail is Not updated");
+    if(!updatedThumbnail) throw new  ApiError(400,"Thumbnail is Not updated");
 
     return res.status(200).json( new ApiResponce(200,updatedThumbnail,"Accomodation Thumbnail Image Updated Successfully"));
 });
@@ -82,12 +82,12 @@ const updateAccomodationImageById = asyncHandler( async (req,res) => {
     // console.log(localImagesPath)
 
 
-    if(!localImagesPath) throw ApiError(400,"Images files is required");
+    if(!localImagesPath) throw new  ApiError(400,"Images files is required");
     
 
     const accomodation_images = await uploadOnCloudinary(localImagesPath);
 
-    if(!accomodation_images) throw ApiError(400,"The Images is not uploaded");
+    if(!accomodation_images) throw new  ApiError(400,"The Images is not uploaded");
 
     const updatedImages = await Accomodation.findOneAndUpdate({_id:id},{
         $set: {
@@ -95,7 +95,7 @@ const updateAccomodationImageById = asyncHandler( async (req,res) => {
         }
     },{new: true});
 
-    if(!updatedImages) throw ApiError(400,"Images is Not updated");
+    if(!updatedImages) throw new  ApiError(400,"Images is Not updated");
 
     return res.status(200).json( new ApiResponce(200,updatedImages,"Accomodation Images Updated Successfully"));
 });
@@ -104,7 +104,7 @@ const deleteAccomodationById = asyncHandler( async (req,res) => {
     const {id} = req.params;
     
     const accomodation = await Accomodation.findOne({_id:id});
-    if(!accomodation) throw ApiError(400,"Accomodation does not exists")
+    if(!accomodation) throw new  ApiError(400,"Accomodation does not exists")
 
     await Accomodation.findOneAndDelete({_id:id});    
 
@@ -117,7 +117,7 @@ const getAccomodationById = asyncHandler( async (req,res) => {
     const {id} = req.params;
     
     const accomodation = await Accomodation.findOne({_id:id});
-    if(!accomodation) throw ApiError(400,"Accomodation does not exists");
+    if(!accomodation) throw new  ApiError(400,"Accomodation does not exists");
 
     res.status(200).json(new ApiResponce(200, accomodation, "Fetched Accomodation By id Successfully"));
 });
@@ -125,7 +125,7 @@ const getAccomodationById = asyncHandler( async (req,res) => {
 const getAllAccomodation = asyncHandler( async (req,res) => {
 
     const accomodation = await Accomodation.find();
-    if(!accomodation) throw ApiError(400,"Accomodation does not exists")
+    if(!accomodation) throw new  ApiError(400,"Accomodation does not exists")
 
     return res.status(200).json(new ApiResponce(200,accomodation,"All Accomodation Fecthed Successfully"));
 })

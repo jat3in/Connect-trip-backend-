@@ -63,7 +63,7 @@ const updateReview = asyncHandler( async (req,res) => {
         }
     },{new : true});
 
-    if(!rating) new ApiError(400,"the ratings not updated");
+    if(!rating) throw new ApiError(400,"the ratings not updated");
     return res.status(200).json(new ApiResponce(200, rating," Reveiw and ratings updated successfully"));
 });
 

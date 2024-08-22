@@ -77,17 +77,17 @@ const HolidayImagesUpload = asyncHandler( async (req,res) => {
 
     const holiday = await Holiday.findOne({_id: id});
 
-    if(!holiday) throw ApiError(400, "Invalid Id of holiday");
+    if(!holiday) throw new  ApiError(400, "Invalid Id of holiday");
 
     
     const holidayImageLocalPath = req.files[0].path;
     // // console.log(holidayImageLocalPath);
-    if(!holidayImageLocalPath) throw ApiError(400,"Images files are required");
+    if(!holidayImageLocalPath) throw new  ApiError(400,"Images files are required");
 
 
     const holiday_images = await uploadOnCloudinary(holidayImageLocalPath);
 
-    if(!holiday_images.url) throw ApiError(400,"Failed to upload on Server");
+    if(!holiday_images.url) throw new  ApiError(400,"Failed to upload on Server");
 
     const updatedHoliday = await Holiday.findOneAndUpdate({_id: id},{
         $set:{
@@ -95,7 +95,7 @@ const HolidayImagesUpload = asyncHandler( async (req,res) => {
         }
     },{new: true});
 
-    if(!updatedHoliday) throw ApiError(400,"Holiday Object not updated");
+    if(!updatedHoliday) throw new  ApiError(400,"Holiday Object not updated");
 
     return res.status(201).json(new ApiResponce(201,updatedHoliday,"Images for the holiday Uploaded Successfully"));
 })
@@ -112,7 +112,7 @@ const getHolidayById = asyncHandler( async (req,res) => {
     // console.log(id);
 
     const holiday = await Holiday.find({_id: id});
-    if(!holiday) throw ApiError(400,"Holiday Does not exists");
+    if(!holiday) throw new  ApiError(400,"Holiday Does not exists");
 
     return res.status(200).json( new ApiResponce(200,holiday,"Holiday Fetched Successfully"));
 });

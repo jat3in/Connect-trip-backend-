@@ -57,7 +57,7 @@ const updateDestinationById = asyncHandler( async (req,res) => {
 
     const destination = await Destination.find({_id: id});
 
-    if(!destination) throw ApiError(400,"Invalid Destination");
+    if(!destination) throw new  ApiError(400,"Invalid Destination");
 
     const updatedDestination = await Destination.findOneAndUpdate({_id:id},{
         $set: {
@@ -71,7 +71,7 @@ const updateDestinationById = asyncHandler( async (req,res) => {
         }
     },{new: true});
 
-    if(!updatedDestination) throw ApiError(400,"Destination not updated");
+    if(!updatedDestination) throw new  ApiError(400,"Destination not updated");
 
     return res.status(200).json( new ApiResponce(200,updatedDestination,"Updated Destination Successfully"));
 });
@@ -81,16 +81,16 @@ const updateThumbnailById = asyncHandler( async (req, res) => {
 
     const destination = await Destination.find({_id:id});
 
-    if(!destination) throw ApiError(400,"Destination does not exist");
+    if(!destination) throw new  ApiError(400,"Destination does not exist");
 
     const destThumbnailLocalPath = req.file?.path;
     // console.log(destThumbnailLocalPath);
      
-    if(!destThumbnailLocalPath) throw ApiError(400,"destination thumbnail file is required")
+    if(!destThumbnailLocalPath) throw new  ApiError(400,"destination thumbnail file is required")
 
     const destThumbnail = await uploadOnCloudinary(destThumbnailLocalPath);
 
-    if(!destThumbnail) throw ApiError(400,"Error occured while uploading image on server");
+    if(!destThumbnail) throw new  ApiError(400,"Error occured while uploading image on server");
 
     const updatedDestination = await Destination.findOneAndUpdate({_id:id},{
         $set:{
@@ -98,7 +98,7 @@ const updateThumbnailById = asyncHandler( async (req, res) => {
         }
     },{new: true});
 
-    if(!updatedDestination) throw ApiError(400,"Couldnt update destination thumnail");
+    if(!updatedDestination) throw new  ApiError(400,"Couldnt update destination thumnail");
 
 
     return res.status(200).json(new ApiResponce(200,updatedDestination,"Destination Thumbnail Image Updated Successfully"));
@@ -108,16 +108,16 @@ const updateDesttinationImage = asyncHandler( async (req,res) => {
     const {id} = req.params;
     const destination = await Destination.find({_id:id});
 
-    if(!destination) throw ApiError(400,"Destination does not exist");
+    if(!destination) throw new  ApiError(400,"Destination does not exist");
 
     const destImageLocalPath = req.files[0]?.path;
     console.log(destImageLocalPath)
 
-    if(!destImageLocalPath) throw ApiError(400,"Destination Images Files are required");
+    if(!destImageLocalPath) throw new  ApiError(400,"Destination Images Files are required");
 
     const destImages = await uploadOnCloudinary(destImageLocalPath);
 
-    if(!destImages) throw ApiError(400,"Error on uploading Images on server");
+    if(!destImages) throw new  ApiError(400,"Error on uploading Images on server");
 
     const updatedDestination = await Destination.findOneAndUpdate({_id: id},{
         $set: {
@@ -125,8 +125,8 @@ const updateDesttinationImage = asyncHandler( async (req,res) => {
         }
     },{new: true});
 
-    if(!updatedDestination) throw ApiError(400,"Destination Images is not updated");
-
+    if(!updatedDestination) throw new  ApiError(400,"Destination Images is not updated");
+ 
     return res.status(200).json( new ApiResponce(200,updatedDestination,"Destination Images Updated Successfully"));
 });
 
@@ -136,12 +136,12 @@ const deleteDestinationById = asyncHandler( async (req,res) => {
     
 
 
-    return res.status(200).json(new ApiResponce(200,"Deleted Successfully"));
+    return res.status(200).json(new ApiResponce(200,{},"Deleted Successfully"));
 });
 
 const getAllDestination = asyncHandler( async (req,res) => {
     const destination = await Destination.find();
-    if(!destination) throw ApiError(400,"This destination doesnot exists")
+    if(!destination) throw new  ApiError(400,"This destination doesnot exists")
 
 
     return res.status(200).json(new ApiResponce(200,destination,"Destination fecthed successfully"));
@@ -150,7 +150,7 @@ const getAllDestination = asyncHandler( async (req,res) => {
 const getDestionById = asyncHandler( async (req,res) => {
     const {id} = req.params;
     const destination = await Destination.find({_id:id});
-    if(!destination) throw ApiError(400,"This destination doesnot exists")
+    if(!destination) throw new  ApiError(400,"This destination doesnot exists")
 
 
     return res.status(200).json(new ApiResponce(200,destination,"Destination fecthed successfully by id"));
