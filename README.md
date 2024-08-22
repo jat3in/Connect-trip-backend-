@@ -297,6 +297,33 @@ http://localhost:8000/api/v1/reveiw/get-reveiw/:id
 http://localhost:8000/api/v1/reveiw/delete-reveiw/:id
 ```
 
+## Booking
+
+1. Created Booking Api : POST
+```
+http://localhost:8000/api/v1/booking/create-booking
+```
+
+2. Update Booking By Id Api : PATCH
+```
+http://localhost:8000/api/v1/booking/update-booking/:id
+```
+
+3. Get All Booking Api : GET
+```
+http://localhost:8000/api/v1/booking/get-booking
+```
+
+4. Get All Booking By Id Api : GET
+```
+http://localhost:8000/api/v1/booking/get-booking/:id
+```
+
+5. Delete Booking By Id Api : DELETE
+```
+http://localhost:8000/api/v1/reveiw/delete-booking/:id
+```
+
 ## Flights
 
 1. Flights Search From Departure To Arrival Api : GET
