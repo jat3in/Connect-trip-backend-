@@ -321,7 +321,7 @@ http://localhost:8000/api/v1/booking/get-booking/:id
 
 5. Delete Booking By Id Api : DELETE
 ```
-http://localhost:8000/api/v1/reveiw/delete-booking/:id
+http://localhost:8000/api/v1/booking/delete-booking/:id
 ```
 
 ## Flights
