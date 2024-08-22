@@ -50,10 +50,10 @@ const updateActivityThumbnailById = asyncHandler( async (req,res) => {
     
     const localThumbnailPath = req.file?.path;
     // console.log(localThumbnailPath);
-    if(!localThumbnailPath) throw ApiError(400,"Thumbnail file is required");
+    if(!localThumbnailPath) throw new ApiError(400,"Thumbnail file is required");
 
     const activityThumbnail = await uploadOnCloudinary(localThumbnailPath);
-    if(!activityThumbnail) throw ApiError(400,"Thumbnail images is not uploaded");
+    if(!activityThumbnail) throw new ApiError(400,"Thumbnail images is not uploaded");
 
     const activity = await Activity.findOneAndUpdate({_id: id},{
         $set:{
@@ -61,7 +61,7 @@ const updateActivityThumbnailById = asyncHandler( async (req,res) => {
         }
     },{new: true});
 
-    if(!activity) throw ApiError(400,"The Activity is not updated");
+    if(!activity) throw new ApiError(400,"The Activity is not updated");
     
 
     return res.status(200).json(new ApiResponce(200,activity,"Activity Thumbnail updated successfully"));
@@ -72,10 +72,10 @@ const updateActivityImagesById = asyncHandler( async (req,res) => {
 
     const localImagesPath = req.files[0]?.path;
     // console.log(localImgaesPath);
-    if(!localImagesPath) throw ApiError(400,"Images file is required");
+    if(!localImagesPath) throw new ApiError(400,"Images file is required");
 
     const activity_images = await uploadOnCloudinary(localImagesPath);
-    if(!activity_images) throw ApiError(400,"Images is not uploaded");
+    if(!activity_images) throw new ApiError(400,"Images is not uploaded");
 
     const activity = await Activity.findOneAndUpdate({_id:id},{
         $set: {
@@ -83,7 +83,7 @@ const updateActivityImagesById = asyncHandler( async (req,res) => {
         }
     },{new: true});
 
-    if(!activity) throw ApiError(400,"The Activity is not updated");
+    if(!activity) throw new ApiError(400,"The Activity is not updated");
 
     return res.status(200).json(new ApiResponce(200,activity,"Activity Images updated successfully"));
 });
@@ -91,7 +91,7 @@ const updateActivityImagesById = asyncHandler( async (req,res) => {
 const getAllAcitivity = asyncHandler( async (req,res) => {
 
     const activity = await Activity.find();
-    if(!activity) throw ApiError(400,"Activity not found");
+    if(!activity) throw new ApiError(400,"Activity not found");
     return res.status(200).json(new ApiResponce(200,activity,"All Activity Fetched Successfully"));
 });
 
@@ -111,7 +111,7 @@ const deleteActivity = asyncHandler( async (req,res) => {
     const {id} = req.params;
 
    const activity =  await Activity.findOneAndDelete({_id:id});
-   if(!activity) throw ApiError(400,"Id is in valid");
+   if(!activity) throw new ApiError(400,"Id is in valid");
 
 
     return res.status(200).json(new ApiResponce(200,{},"Activity deleted by id"));
