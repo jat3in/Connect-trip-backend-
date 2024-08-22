@@ -62,9 +62,11 @@ const getAllBooking = asyncHandler( async (req,res) => {
 
 const getBookingById = asyncHandler( async (req,res) => {
     const {id} = req.params;
-    console.log(id);
+    // console.log(id);
+    const booking = await Booking.findOne({_id: id});
+    if(!booking) throw new ApiError(400,"booking Id Not valid");
 
-    return res.send("listning on the get by id booking");
+    return res.status(200).json(new ApiResponce(200,booking,"Booking found with id successfully"));
 
 });
 
