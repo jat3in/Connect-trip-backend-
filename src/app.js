@@ -34,7 +34,7 @@ app.use("/api/v1/holiday", holidayRouter);
 
 // flights routes will goes here....
 
-import flightRouter from "./routes/flight.route.js";
+import flightRouter from "./flights/flight.route.js";
 
 app.use("/api/v1/flight", flightRouter);
 

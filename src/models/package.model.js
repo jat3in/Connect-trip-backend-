@@ -1,4 +1,6 @@
 import mongoose, { Schema } from "mongoose";
+import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2"; 
+
 
 
 // calculating duration like duration = finale date - initial dates
@@ -117,5 +119,5 @@ const PackageSchema = Schema({
 
 },{timestamps: true});
 
-
+PackageSchema.plugin(mongooseAggregatePaginate);
 export const Package = mongoose.model("package",PackageSchema)

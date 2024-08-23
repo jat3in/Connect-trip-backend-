@@ -9,7 +9,79 @@ const createPackage = asyncHandler( async (req,res) => {
     const { package_name,description,package_inclusion,package_destination,package_type,price,package_itinery,package_duration,duration,avalablities_date} = req.body;
 
     if( !package_name && !duration && !package_inclusion && !package_type && !price && !package_destination && !package_itinery && !package_duration)
-        throw new ApiError(400, "Some what feild is required")
+        throw new ApiError(400, "Some what feild is required");
+
+    // Package.aggregate([
+    //     {
+    //         $lookup: {
+    //             from: "transports", // The name of the transport collection
+    //             localField: "package_inclusion.transport",
+    //             foreignField: "_id",
+    //             as: "transportDetails"
+    //         }
+    //     },
+    //     {
+    //         $lookup: {
+    //             from: "accomodations", // The name of the accommodation collection
+    //             localField: "package_inclusion.accomodation",
+    //             foreignField: "_id",
+    //             as: "accommodationDetails"
+    //         }
+    //     },
+    //     {
+    //         $lookup: {
+    //             from: "activities", // The name of the activity collection
+    //             localField: "package_inclusion.activities",
+    //             foreignField: "_id",
+    //             as: "activityDetails"
+    //         }
+    //     },
+    //     {
+    //         $addFields: {
+    //             durationInDays: {
+    //                 $divide: [
+    //                     { $subtract: ["$duration.endDate", "$duration.startDate"] },
+    //                     1000 * 60 * 60 * 24
+    //                 ]
+    //             }
+    //         }
+    //     },
+    //     {
+    //         $addFields: {
+    //             totalTransportCost: { $sum: "$transportDetails.price" },
+    //             totalAccommodationCost: { $sum: "$accommodationDetails.price" },
+    //             totalActivityCost: { $sum: "$activityDetails.price" }
+    //         }
+    //     },
+    //     {
+    //         $addFields: {
+    //             overallPrice: {
+    //                 $sum: [
+    //                     "$totalTransportCost",
+    //                     "$totalAccommodationCost",
+    //                     "$totalActivityCost",
+    //                     "$price"
+    //                 ]
+    //             }
+    //         }
+    //     },
+    //     {
+    //         $project: {
+    //             _id: 0,
+    //             package_name: 1,
+    //             durationInDays: 1,
+    //             totalTransportCost: 1,
+    //             totalAccommodationCost: 1,
+    //             totalActivityCost: 1,
+    //             overallPrice: 1
+    //         }
+    //     }
+    // ]).then(result => {
+    //     console.log(result);
+    // })
+    // .catch(err => {
+    //     console.error(err);
+    // });
 
     const createdPackage = await Package.create({
         package_name,
