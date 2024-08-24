@@ -163,14 +163,14 @@ const getAllPackage = asyncHandler( async (req,res) => {
                 },
                 {
                     $addFields: {
-                        packageMul: {
-                            $multiply: ["$Price",0.20]
+                        finalPrice: {
+                            $multiply: ["$Price",1.20]
                         }
                     }
                 },{
                     $addFields: {
                         finalPrice: {
-                            $sum: ["$Price", "$packageMul"]
+                            $round: ["$finalPrice",2]
                         }
                     }
                 },
@@ -211,6 +211,8 @@ const getAllPackage = asyncHandler( async (req,res) => {
         
         //     console.log( differenceInDays)
     if(!packages[0]) throw new  ApiError(400,"cannot find packages");
+
+    // console.log(packages[0]?.finalPrice);
     return res.status(200).json(new ApiResponce(200,packages[0],"All Packages find successfully"));
 });
 
