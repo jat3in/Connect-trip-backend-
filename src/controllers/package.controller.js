@@ -9,23 +9,25 @@ const createPackage = asyncHandler( async (req,res) => {
     const { package_name,description,package_inclusion,package_destination,package_type,package_itinery,package_duration,duration,avalablities_date} = req.body;
 
     if( !package_name && !duration && !package_inclusion && !package_type && !package_destination && !package_itinery && !package_duration)
-        throw new ApiError(400, "Some what feild is required");   
+        throw new ApiError(400, "Some what feild is required");  
+    
+    console.log(req.finalPrice);
 
-    const createdPackage = await Package.create({
-        package_name,
-        description,
-        package_inclusion,
-        package_destination,
-        package_type,
-        package_itinery,
-        package_duration,
-        duration,
-        avalablities_date
-    });
+    // const createdPackage = await Package.create({
+    //     package_name,
+    //     description,
+    //     package_inclusion,
+    //     package_destination,
+    //     package_type,
+    //     package_itinery,
+    //     package_duration,
+    //     duration,
+    //     avalablities_date
+    // });
 
-    if(!createdPackage) throw new ApiError(400,"Package does not created");
+    // if(!createdPackage) throw new ApiError(400,"Package does not created");
 
-    return res.status(200).json(new ApiResponce(200,createdPackage,"Package Created Successfully"));
+    // return res.status(200).json(new ApiResponce(200,createdPackage,"Package Created Successfully"));
 });
 
 
