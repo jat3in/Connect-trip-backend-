@@ -84,13 +84,32 @@ const PriceCalculator = asyncHandler( async (req,res,next) => {
 
     let sumAll = activitiesTotalSum + accomodationTotalSum + transportTotalSum;
     let finalPrice = sumAll * 1.20;
-    console.log(finalPrice)
-
+    // console.log(finalPrice)
+    req.priceAccomodation = accomodationTotalSum;
+    req.priceTransport = transportTotalSum;
+    req.priceActivities =activitiesTotalSum;
     req.finalPrice = finalPrice;
     next();
 
 
 });
 
+const calculateDuration = asyncHandler( async (req,res, next) => {
+    const {duration} = req.body;
+    // console.log(duration);
 
-export { PriceCalculator }
+
+         const startDate = new Date(duration.startDate);
+        const endDate = new  Date(duration.endDate);
+        
+        const differenceInTime = endDate - startDate; // difference in milliseconds
+        const differenceInDays = differenceInTime / (1000 * 3600 * 24);
+
+        // console.log(differenceInDays)
+
+        req.durationInDays = differenceInDays;
+        next();
+})
+
+
+export { PriceCalculator , calculateDuration}

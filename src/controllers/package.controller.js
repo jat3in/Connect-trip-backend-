@@ -14,19 +14,28 @@ const createPackage = asyncHandler( async (req,res) => {
     // console.log(req.finalPrice);
 
     if(!req.finalPrice) throw new ApiError(400, "Final price not calculated");
-    
 
-    // const createdPackage = await Package.create({
-    //     package_name,
-    //     description,
-    //     package_inclusion,
-    //     package_destination,
-    //     package_type,
-    //     package_itinery,
-    //     package_duration,
-    //     duration,
-    //     avalablities_date
-    // });
+    console.log(req.durationInDays)
+
+   const durationSchema = {
+        startDate,
+        endDate,
+        durationInDay : req.durationInDays,
+    }
+
+
+    const createdPackage = await Package.create({
+        package_name,
+        description,
+        package_inclusion,
+        package_destination,
+        package_type,
+        price: req.finalPrice,
+        package_itinery,
+        package_duration,
+        duration : durationSchema,
+        avalablities_date
+    });
 
     // if(!createdPackage) throw new ApiError(400,"Package does not created");
 

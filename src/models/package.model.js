@@ -115,6 +115,15 @@ const PackageSchema = Schema({
         type: Date,
         index: true,
     }],
+    price_accomodation:{
+        type: Schema.Types.Decimal128,
+    },
+    price_transport: {
+      type: Schema.Types.Decimal128,  
+    },
+    price_activity: {
+      type: Schema.Types.Decimal128,  
+    },
     reviews: {
         type: Schema.Types.ObjectId,
         refs: "review",
