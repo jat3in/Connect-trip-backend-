@@ -94,8 +94,7 @@ const PackageSchema = Schema({
         index: true,
     },
     price: {
-        type: Schema.Types.Decimal128,
-        required: true,
+        type: Schema.Types.Decimal128
     },
     package_itinery:[{
         type: ItinerySchema,
