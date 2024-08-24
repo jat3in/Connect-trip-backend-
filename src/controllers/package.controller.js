@@ -15,11 +15,11 @@ const createPackage = asyncHandler( async (req,res) => {
 
     if(!req.finalPrice) throw new ApiError(400, "Final price not calculated");
 
-    console.log(req.durationInDays)
+    // console.log(req.durationInDays)
 
    const durationSchema = {
-        startDate,
-        endDate,
+    startDate: duration.startDate,
+    endDate: duration.endDate,
         durationInDay : req.durationInDays,
     }
 
@@ -32,14 +32,17 @@ const createPackage = asyncHandler( async (req,res) => {
         package_type,
         price: req.finalPrice,
         package_itinery,
+        price_accomodation: req.priceAccomodation,
+        price_transport: req.priceTransport,
+        price_activity: req.priceActivities,
         package_duration,
         duration : durationSchema,
         avalablities_date
     });
 
-    // if(!createdPackage) throw new ApiError(400,"Package does not created");
+    if(!createdPackage) throw new ApiError(400,"Package does not created");
 
-    // return res.status(200).json(new ApiResponce(200,createdPackage,"Package Created Successfully"));
+    return res.status(200).json(new ApiResponce(200,createdPackage,"Package Created Successfully"));
 });
 
 
@@ -122,112 +125,9 @@ const updateImagePackage = asyncHandler( async (req,res) => {
 });
 
 const getAllPackage = asyncHandler( async (req,res) => {
-    const packages = await Package.aggregate([
-                {
-                    $lookup: {
-                        from: "transports", // The name of the transport collection
-                        localField: "package_inclusion.transport",
-                        foreignField: "_id",
-                        as: "transportDetails"
-                    }
-                },
-                {
-                    $lookup: {
-                        from: "accomodations", // The name of the accommodation collection
-                        localField: "package_inclusion.accomodation",
-                        foreignField: "_id",
-                        as: "accommodationDetails"
-                    }
-                },
-                {
-                    $lookup: {
-                        from: "activities", // The name of the activity collection
-                        localField: "package_inclusion.activities",
-                        foreignField: "_id",
-                        as: "activityDetails"
-                    }
-                },
-                {
-                    $addFields: {
-                        durationInDays: {
-                            $divide: [
-                                { $subtract: ["$duration.endDate", "$duration.startDate"] },
-                                1000 * 60 * 60 * 24
-                            ]
-                        }
-                    }
-                },
-                {
-                    $addFields: {
-                        totalTransportCost: { $sum: "$transportDetails.price" },
-                        totalAccommodationCost: { $sum: "$accommodationDetails.price" },
-                        totalActivityCost: { $sum: "$activityDetails.price" }
-                    }
-                },
-                {
-                    $addFields: {
-                        Price: {
-                            $sum: [
-                                "$totalTransportCost",
-                                "$totalAccommodationCost",
-                                "$totalActivityCost"
-                            ]
-                        }
-                    }
-                },
-                {
-                    $addFields: {
-                        finalPrice: {
-                            $multiply: ["$Price",1.20]
-                        }
-                    }
-                },{
-                    $addFields: {
-                        finalPrice: {
-                            $round: ["$finalPrice",2]
-                        }
-                    }
-                },
-                {
-                    $project: {
-                        _id: 0,
-                        package_name: 1,
-                        package_images: 1,
-                        package_thumbnail: 1,
-                        description: 1,
-                        package_inclusion: 1,
-                        package_destination: 1,
-                        package_type: 1,
-                        package_itinery: 1,
-                        package_duration: 1,
-                        avalablities_date: 1,
-                        durationInDays: 1,
-                        Price: 1,
-                        finalPrice: 1
-                    }
-                }
-            ]).then(result => {
-                // console.log("showing packages",result);
-                return result;
-            })
-            .catch(err => {
-                console.error(err);
-            });
-
-            // const package_find = packages[0];
-        
-            // console.log(packages[0]);
-        //     const startDate = new Date("2024-09-01T00:00:00Z");
-        // const endDate = new Date("2024-09-03T00:00:00Z");
-        
-        // const differenceInTime = endDate - startDate; // difference in milliseconds
-        // const differenceInDays = differenceInTime / (1000 * 3600 * 24);
-        
-        //     console.log( differenceInDays)
-    if(!packages[0]) throw new  ApiError(400,"cannot find packages");
-
-    // console.log(packages[0]?.finalPrice);
-    return res.status(200).json(new ApiResponce(200,packages[0],"All Packages find successfully"));
+    const packages = await Package.find();
+    if(!packages) throw new ApiError(400, "Not have any package");
+    return res.status(200).json(new ApiResponce(200,packages,"All Packages find successfully"));
 });
 
 const getAllPackageById = asyncHandler( async (req,res) => {
