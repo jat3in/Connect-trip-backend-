@@ -5,9 +5,9 @@ import { Activity} from "../models/activities.model.js";
 import mongoose from "mongoose";
 
 
-const packagePriceCalculator = asyncHandler( async (req,res,next) => {
-    const {package_inclusion, duration} = req.body;
-    console.log(package_inclusion, duration);
+const PriceCalculator = asyncHandler( async (req,res,next) => {
+    const {package_inclusion} = req.body;
+    // console.log(package_inclusion, duration);
     const transportArray = package_inclusion.transport;
     // const priceTransport =  transportArray.map( async (data) => {
     //    transportFind = await Transport.findOne({_id: data}).select("price");
@@ -93,4 +93,4 @@ const packagePriceCalculator = asyncHandler( async (req,res,next) => {
 });
 
 
-export { packagePriceCalculator }
+export { PriceCalculator }

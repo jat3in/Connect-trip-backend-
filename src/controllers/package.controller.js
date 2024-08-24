@@ -11,7 +11,10 @@ const createPackage = asyncHandler( async (req,res) => {
     if( !package_name && !duration && !package_inclusion && !package_type && !package_destination && !package_itinery && !package_duration)
         throw new ApiError(400, "Some what feild is required");  
     
-    console.log(req.finalPrice);
+    // console.log(req.finalPrice);
+
+    if(!req.finalPrice) throw new ApiError(400, "Final price not calculated");
+    
 
     // const createdPackage = await Package.create({
     //     package_name,

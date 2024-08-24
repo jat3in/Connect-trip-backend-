@@ -15,6 +15,9 @@ const DurationSchema = Schema({
         type: Date,
         required: true,
     }, 
+    durationInDay: {
+        type: Number,
+    }
 })
 
 const PackageDurationSchema = {
@@ -94,7 +97,8 @@ const PackageSchema = Schema({
         index: true,
     },
     price: {
-        type: Schema.Types.Decimal128
+        type: Schema.Types.Decimal128,
+        required: true,
     },
     package_itinery:[{
         type: ItinerySchema,
