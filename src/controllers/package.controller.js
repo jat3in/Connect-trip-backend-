@@ -55,17 +55,27 @@ const updatePackage = asyncHandler( async (req,res) => {
     if( !package_name && !duration && !package_inclusion && !package_type  && !package_destination && !package_itinery && !package_duration)
         throw new ApiError(400, "Some what feild is required")
 
+    const durationSchema = {
+        startDate: duration.startDate,
+        endDate: duration.endDate,
+            durationInDay : req.durationInDays,
+        }
+
     const updatedPackage = await Package.findOneAndUpdate({_id:id},{
         $set: {
-        package_name,
-        description,
-        package_inclusion,
-        package_destination,
-        package_type,
-        package_itinery,
-        package_duration,
-        duration,
-        avalablities_date
+            package_name,
+            description,
+            package_inclusion,
+            package_destination,
+            package_type,
+            price: req.finalPrice,
+            package_itinery,
+            price_accomodation: req.priceAccomodation,
+            price_transport: req.priceTransport,
+            price_activity: req.priceActivities,
+            package_duration,
+            duration : durationSchema,
+            avalablities_date
         }
     },{new: true});
 
