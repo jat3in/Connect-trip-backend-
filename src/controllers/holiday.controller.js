@@ -5,9 +5,9 @@ import { Holiday } from "../models/holiday.model.js";
 import { uploadOnCloudinary , deleteOnCloudinary } from "../utils/cloudnairy.js"
 
 const HolidayRegsiter = asyncHandler( async (req,res) => {
-    const {holiday_name,description,destination,duration,price,startDate,endDate,holiday_itinery,holiday_inclusion,holiday_exclusion,reviews} = req.body;
+    const {holiday_name,description,destination,duration,startDate,endDate,holiday_itinery,holiday_inclusion,holiday_exclusion,reviews} = req.body;
 
-    if(!holiday_name && !destination && !duration && !price && !holiday_itinery && !holiday_inclusion)
+    if(!holiday_name && !destination && !duration && !holiday_itinery && !holiday_inclusion)
             throw new ApiError(400,"All fields are mendatory");
     
     const holidayExists = await Holiday.findOne({holiday_name});
@@ -23,12 +23,14 @@ const HolidayRegsiter = asyncHandler( async (req,res) => {
         destination,
         description,
         duration,
-        price,
+        price: req.finalPrice,
         startDate,
         endDate,
         holiday_itinery,
         holiday_inclusion,
         holiday_exclusion,
+        holidayTransport_price: req.priceTransport ,
+        holidayAccomodation_price: req.priceAccomodation,
         reviews
     });
 
