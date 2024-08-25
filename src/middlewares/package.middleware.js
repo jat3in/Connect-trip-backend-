@@ -2,7 +2,6 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { Accomodation } from "../models/accomodation.model.js";
 import { Transport } from "../models/transport.model.js";
 import { Activity} from "../models/activities.model.js";
-import mongoose from "mongoose";
 
 
 const PriceCalculator = asyncHandler( async (req,res,next) => {
