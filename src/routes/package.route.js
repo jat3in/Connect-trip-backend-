@@ -7,7 +7,7 @@ import { PriceCalculator, calculateDuration } from "../middlewares/package.middl
 const router = Router();
 
 router.route("/create-package").post(verifyJwt, PriceCalculator, calculateDuration, createPackage);
-router.route("/update-package/:id").patch(verifyJwt,updatePackage);
+router.route("/update-package/:id").patch(verifyJwt,PriceCalculator, calculateDuration,updatePackage);
 router.route("/update-package-thumbnail/:id").patch(verifyJwt,upload.single("package_thumbnail"),updateThumbnailPackage);
 router.route("/update-package-images/:id").patch(verifyJwt,upload.array("package_images",5),updateImagePackage);
 router.route("/package/:id").get(getAllPackageById);
