@@ -12,6 +12,8 @@ const HolidayRegsiter = asyncHandler( async (req,res) => {
     
     const holidayExists = await Holiday.findOne({holiday_name});
     if(holidayExists) throw new ApiError(400,"same holiday name already exists");
+
+    if(!req.finalPrice) throw new ApiError(400,"Price is not calculated for holiday");
     
     // const holidayImageLocalPath = req?.files[0]?.path;
     // // console.log(holidayImageLocalPath);
@@ -31,6 +33,7 @@ const HolidayRegsiter = asyncHandler( async (req,res) => {
         holiday_exclusion,
         holidayTransport_price: req.priceTransport ,
         holidayAccomodation_price: req.priceAccomodation,
+        durationInDays: req.durationInDays,
         reviews
     });
 
