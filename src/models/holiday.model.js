@@ -83,6 +83,12 @@ const HolidaySchema = Schema({
         type: String,
         required: true,
     }],
+    holidayTransport_price:{
+        type: Schema.Types.Decimal128,
+    },
+    holidayAccomodation_price:{
+        type: Schema.Types.Decimal128,
+    },
     reviews:{
         type: Schema.Types.ObjectId,
         ref: "review",
