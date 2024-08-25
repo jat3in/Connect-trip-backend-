@@ -6,8 +6,9 @@ const PriceCalculator = asyncHandler( async (req,res,next) => {
     const {holiday_inclusion} = req.body;
     // console.log(package_inclusion, duration);
 
-    console.log(holiday_inclusion)
+    // console.log(holiday_inclusion)
     const transportArray = holiday_inclusion.transport;
+    // console.log(transportArray)
     // const priceTransport =  transportArray.map( async (data) => {
     //    transportFind = await Transport.findOne({_id: data}).select("price");
     //    const price = transportFind.price++;
@@ -19,6 +20,7 @@ const PriceCalculator = asyncHandler( async (req,res,next) => {
     
     const priceTransport = await Promise.all(
         transportArray.map(async (data) => {
+            
             const transportFind = await Transport.findOne({ _id: data }).select("price");
             return transportFind.price; // Return the price directly
         })
@@ -66,7 +68,7 @@ const PriceCalculator = asyncHandler( async (req,res,next) => {
 
     // console.log(accomodationTotalSum)
 
-    console.log( accomodationTotalSum + transportTotalSum)
+    // console.log( accomodationTotalSum ,transportTotalSum)
 
     let sumAll = accomodationTotalSum + transportTotalSum;
     let finalPrice = sumAll * 1.20;
@@ -74,7 +76,9 @@ const PriceCalculator = asyncHandler( async (req,res,next) => {
     req.priceAccomodation = accomodationTotalSum;
     req.priceTransport = transportTotalSum;
     req.finalPrice = finalPrice;
-    // next();
+
+    // console.log(finalPrice)
+    next();
 
 
 });
@@ -93,6 +97,8 @@ const calculateDuration = asyncHandler( async (req,res, next) => {
         // console.log(differenceInDays)
 
         req.durationInDays = differenceInDays;
+
+        console.log(differenceInDays)
         next();
 })
 
