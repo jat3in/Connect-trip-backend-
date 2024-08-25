@@ -1,12 +1,13 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { Accomodation } from "../models/accomodation.model.js";
 import { Transport } from "../models/transport.model.js";
-import { Activity} from "../models/activities.model.js";
 
 const PriceCalculator = asyncHandler( async (req,res,next) => {
-    const {package_inclusion} = req.body;
+    const {holiday_inclusion} = req.body;
     // console.log(package_inclusion, duration);
-    const transportArray = package_inclusion.transport;
+
+    console.log(holiday_inclusion)
+    const transportArray = holiday_inclusion.transport;
     // const priceTransport =  transportArray.map( async (data) => {
     //    transportFind = await Transport.findOne({_id: data}).select("price");
     //    const price = transportFind.price++;
@@ -50,7 +51,7 @@ const PriceCalculator = asyncHandler( async (req,res,next) => {
 
     // accomodations price calculation
 
-    const accomodationArray = package_inclusion.accomodation;
+    const accomodationArray = holiday_inclusion.accomodation;
 
     const priceAccomodation = await Promise.all(
         accomodationArray.map(async (data) => {
@@ -65,29 +66,15 @@ const PriceCalculator = asyncHandler( async (req,res,next) => {
 
     // console.log(accomodationTotalSum)
 
-    const activitiesArray = package_inclusion.activities;
+    console.log( accomodationTotalSum + transportTotalSum)
 
-    const priceActivities = await Promise.all(
-        activitiesArray.map(async (data) => {
-            const activitiesFind = await Activity.findOne({ _id: data }).select("price");
-            return activitiesFind.price; // Return the price directly
-        })
-    );
-
-    const activitiesTotalSum = priceActivities
-    .map(price => parseFloat(price.toString()))  // Convert Decimal128 to number
-    .reduce((acc, curr) => acc + curr, 0); 
-
-    // console.log(activitiesTotalSum + accomodationTotalSum + transportTotalSum)
-
-    let sumAll = activitiesTotalSum + accomodationTotalSum + transportTotalSum;
+    let sumAll = accomodationTotalSum + transportTotalSum;
     let finalPrice = sumAll * 1.20;
     // console.log(finalPrice)
     req.priceAccomodation = accomodationTotalSum;
     req.priceTransport = transportTotalSum;
-    req.priceActivities =activitiesTotalSum;
     req.finalPrice = finalPrice;
-    next();
+    // next();
 
 
 });

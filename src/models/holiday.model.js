@@ -75,10 +75,10 @@ const HolidaySchema = Schema({
         type: ItinerySchema,
         required: true,
     }],
-    holiday_inclusion: [{
+    holiday_inclusion: {
         type: HolidayInclusionSchema,
         required: true,        
-    }],
+    },
     holiday_exclusion:[{
         type: String,
         required: true,
