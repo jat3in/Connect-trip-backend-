@@ -50,8 +50,8 @@ const registerDestination = asyncHandler( async (req,res) => {
 const updateDestinationById = asyncHandler( async (req,res) => {
     const {id} = req.params;
     const {destination_name, country, state, city,attraction,popularity, best_time_visit} = req.body;
-    if(!destination_name && !country && !state && !city && !attraction && !popularity && !best_time_visit)
-        throw new ApiError(400, "All Fields are required");
+    // if(!destination_name && !country && !state && !city && !attraction && !popularity && !best_time_visit)
+    //     throw new ApiError(400, "All Fields are required");
 
     const destination = await Destination.find({_id: id});
 
@@ -108,18 +108,36 @@ const updateDesttinationImage = asyncHandler( async (req,res) => {
 
     if(!destination) throw new  ApiError(400,"Destination does not exist");
 
-    const destImageLocalPath = req.files[0]?.path;
-    console.log(destImageLocalPath)
-
+    const destImageLocalPath = req.files;
+    // console.log(destImageLocalPath)
     if(!destImageLocalPath) throw new  ApiError(400,"Destination Images Files are required");
 
-    const destImages = await uploadOnCloudinary(destImageLocalPath);
+    const imageUrlsArray = destImageLocalPath.map(file => file.path);
 
-    if(!destImages) throw new  ApiError(400,"Error on uploading Images on server");
+    // console.log(imageUrlsArray)
+    if(imageUrlsArray.length === 0) throw new ApiError("images files is required");
+    
+
+    const serverImage = await Promise.all(
+        imageUrlsArray.map(async (data) => {
+            
+            const imageUrlServer = await uploadOnCloudinary(data);
+            return imageUrlServer.url; // Return the url of upload image
+        })
+    );
+
+    // console.log(serverImage)
+
+    
+
+
+    // const destImages = await uploadOnCloudinary(imageUrls);
+
+    if(serverImage.length === 0 ) throw new  ApiError(400,"Error on uploading Images on server");
 
     const updatedDestination = await Destination.findOneAndUpdate({_id: id},{
         $set: {
-            destImages: destImages?.url,
+            destImage: serverImage,
         }
     },{new: true});
 
