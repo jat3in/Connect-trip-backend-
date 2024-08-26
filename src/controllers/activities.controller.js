@@ -70,16 +70,34 @@ const updateActivityThumbnailById = asyncHandler( async (req,res) => {
 const updateActivityImagesById = asyncHandler( async (req,res) => {
     const {id} = req.params;
 
-    const localImagesPath = req.files[0]?.path;
-    // console.log(localImgaesPath);
-    if(!localImagesPath) throw new ApiError(400,"Images file is required");
+    const localImagesPath = req.files;
 
-    const activity_images = await uploadOnCloudinary(localImagesPath);
-    if(!activity_images) throw new ApiError(400,"Images is not uploaded");
+    if(!localImagesPath) throw new  ApiError(400,"Activity Images Files are required");
+
+    const imageUrlsArray = localImagesPath.map(file => file.path);
+
+    // console.log(imageUrlsArray)
+    if(imageUrlsArray.length === 0) throw new ApiError("images files is required");
+    
+
+    const serverImage = await Promise.all(
+        imageUrlsArray.map(async (data) => {
+            
+            const imageUrlServer = await uploadOnCloudinary(data);
+            return imageUrlServer.url; // Return the url of upload image
+        })
+    );
+
+    // console.log(serverImage)
+    // const destImages = await uploadOnCloudinary(imageUrls);
+
+    if(serverImage.length === 0 ) throw new  ApiError(400,"Error on uploading Images on server");
+
+    // console.log(localImgaesPath);
 
     const activity = await Activity.findOneAndUpdate({_id:id},{
         $set: {
-            activity_images: activity_images.url,
+            activity_images: serverImage,
         }
     },{new: true});
 

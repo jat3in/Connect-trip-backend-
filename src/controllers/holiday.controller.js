@@ -89,18 +89,33 @@ const HolidayImagesUpload = asyncHandler( async (req,res) => {
     if(!holiday) throw new  ApiError(400, "Invalid Id of holiday");
 
     
-    const holidayImageLocalPath = req.files[0].path;
+    const holidayImageLocalPath = req.files;
+    if(!holidayImageLocalPath) throw new  ApiError(400,"Holiday Images Files are required");
+
+    const imageUrlsArray = holidayImageLocalPath.map(file => file.path);
+
+    // console.log(imageUrlsArray)
+    if(imageUrlsArray.length === 0) throw new ApiError("images files is required");
+    
+
+    const serverImage = await Promise.all(
+        imageUrlsArray.map(async (data) => {
+            
+            const imageUrlServer = await uploadOnCloudinary(data);
+            return imageUrlServer.url; // Return the url of upload image
+        })
+    );
+
+    // console.log(serverImage)
+    // const destImages = await uploadOnCloudinary(imageUrls);
+
+    if(serverImage.length === 0 ) throw new  ApiError(400,"Error on uploading Images on server");
     // // console.log(holidayImageLocalPath);
-    if(!holidayImageLocalPath) throw new  ApiError(400,"Images files are required");
-
-
-    const holiday_images = await uploadOnCloudinary(holidayImageLocalPath);
-
-    if(!holiday_images.url) throw new  ApiError(400,"Failed to upload on Server");
+    
 
     const updatedHoliday = await Holiday.findOneAndUpdate({_id: id},{
         $set:{
-            holiday_images: holiday_images.url,
+            holiday_images: serverImage,
         }
     },{new: true});
 

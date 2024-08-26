@@ -113,18 +113,32 @@ const updateImagePackage = asyncHandler( async (req,res) => {
     const {id} = req.params;
     // console.log(id);
 
-    const packageImageLocalPath = req.files[0]?.path;
+    const packageImageLocalPath = req.files
     // console.log(packageImageLocalPath)
+    if(!packageImageLocalPath) throw new  ApiError(400,"Package Images Files are required");
 
-    if(!packageImageLocalPath) throw new  ApiError(400,"The Images file is required");
+    const imageUrlsArray = packageImageLocalPath.map(file => file.path);
 
-    const package_images = await uploadOnCloudinary(packageImageLocalPath);
+    // console.log(imageUrlsArray)
+    if(imageUrlsArray.length === 0) throw new ApiError("images files is required");
     
-    if(!package_images) throw new  ApiError(400,"While uploading on cloudinary is not possible");
+
+    const serverImage = await Promise.all(
+        imageUrlsArray.map(async (data) => {
+            
+            const imageUrlServer = await uploadOnCloudinary(data);
+            return imageUrlServer.url; // Return the url of upload image
+        })
+    );
+
+    // console.log(serverImage)
+    // const destImages = await uploadOnCloudinary(imageUrls);
+
+    if(serverImage.length === 0 ) throw new  ApiError(400,"Error on uploading Images on server");
 
     const updateImages = await Package.findOneAndUpdate({_id:id},{
         $set: {
-            package_images: package_images.url
+            package_images: serverImage
 
         }
     },{new : true});

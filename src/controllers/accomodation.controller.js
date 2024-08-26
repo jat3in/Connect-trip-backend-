@@ -78,20 +78,34 @@ const updateAccomodationThumbnail = asyncHandler( async (req,res) => {
 
 const updateAccomodationImageById = asyncHandler( async (req,res) => {
     const {id} = req.params;
-    const localImagesPath = req.files[0]?.path;
+    const localImagesPath = req.files;
     // console.log(localImagesPath)
+    if(!localImagesPath) throw new  ApiError(400,"Accomodation Images Files are required");
 
+    const imageUrlsArray = localImagesPath.map(file => file.path);
 
-    if(!localImagesPath) throw new  ApiError(400,"Images files is required");
+    // console.log(imageUrlsArray)
+    if(imageUrlsArray.length === 0) throw new ApiError("images files is required");
     
 
-    const accomodation_images = await uploadOnCloudinary(localImagesPath);
+    const serverImage = await Promise.all(
+        imageUrlsArray.map(async (data) => {
+            
+            const imageUrlServer = await uploadOnCloudinary(data);
+            return imageUrlServer.url; // Return the url of upload image
+        })
+    );
 
-    if(!accomodation_images) throw new  ApiError(400,"The Images is not uploaded");
+    // console.log(serverImage)
+    // const destImages = await uploadOnCloudinary(imageUrls);
+
+    if(serverImage.length === 0 ) throw new  ApiError(400,"Error on uploading Images on server");
+
+
 
     const updatedImages = await Accomodation.findOneAndUpdate({_id:id},{
         $set: {
-            accomodation_images: accomodation_images.url,
+            accomodation_images: serverImage,
         }
     },{new: true});
 

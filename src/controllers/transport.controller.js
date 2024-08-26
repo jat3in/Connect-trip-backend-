@@ -71,16 +71,32 @@ const updateThumbnailTransport = asyncHandler( async (req,res) => {
 
 const updateImagesTransport = asyncHandler( async (req,res) => {
     const {id} = req.params;
-    const transportImagesLocalPath = req.files[0]?.path;
+    const transportImagesLocalPath = req.files;
     // console.log(tranportImagesLocalPath);
-    if(!transportImagesLocalPath) new ApiError(400,"the images file is required");
+    if(!transportImagesLocalPath) throw new  ApiError(400,"Transport Images Files are required");
 
-    const transport_images = await uploadOnCloudinary(transportImagesLocalPath);
-    if(!transport_images) throw new ApiError(400,"Transport Images not uploaded on server");
+    const imageUrlsArray = transportImagesLocalPath.map(file => file.path);
 
+    // console.log(imageUrlsArray)
+    if(imageUrlsArray.length === 0) throw new ApiError("images files is required");
+    
+
+    const serverImage = await Promise.all(
+        imageUrlsArray.map(async (data) => {
+            
+            const imageUrlServer = await uploadOnCloudinary(data);
+            return imageUrlServer.url; // Return the url of upload image
+        })
+    );
+
+    // console.log(serverImage)
+    // const destImages = await uploadOnCloudinary(imageUrls);
+
+    if(serverImage.length === 0 ) throw new  ApiError(400,"Error on uploading Images on server");
+    
     const updateTransportImages = await Transport.findOneAndUpdate({_id:id},{
         $set: {
-            transport_images: transport_images.url
+            transport_images: serverImage
         }
     },{new : true});
 
