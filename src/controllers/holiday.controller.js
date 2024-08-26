@@ -47,28 +47,32 @@ const HolidayUpdate = asyncHandler( async (req,res) => {
     // console.log(id);
     const {holiday_name,description,destination,duration,price,startDate,endDate,holiday_itinery,holiday_inclusion,holiday_exclusion,reviews} = req.body;
     
-    if(!holiday_name && !destination && !duration && !price && !holiday_itinery && !holiday_inclusion)
+    if(!holiday_name && !destination && !duration && !holiday_itinery && !holiday_inclusion)
         throw new ApiError(400,"All fields are mendatory");
 
     const holiday = await Holiday.findOne({_id: id});
 
     if(!holiday) throw new ApiError(400,"Holiday does not exists");
-
+    
+    if(!req.finalPrice) throw new ApiError(400,"Price is not calculated for holiday");
     
 
     const updateHoliday = await Holiday.findOneAndUpdate({_id : id},{
         $set : {
-        holiday_name,
-        destination,
-        description,
-        duration,
-        price,
-        startDate,
-        endDate,
-        holiday_itinery,
-        holiday_inclusion,
-        holiday_exclusion,
-        reviews
+            holiday_name,
+            destination,
+            description,
+            duration,
+            price: req.finalPrice,
+            startDate,
+            endDate,
+            holiday_itinery,
+            holiday_inclusion,
+            holiday_exclusion,
+            holidayTransport_price: req.priceTransport ,
+            holidayAccomodation_price: req.priceAccomodation,
+            durationInDays: req.durationInDays,
+            reviews
         }
     },{new: true});
 
