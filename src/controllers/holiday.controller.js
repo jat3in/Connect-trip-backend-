@@ -45,7 +45,7 @@ const HolidayRegsiter = asyncHandler( async (req,res) => {
 const HolidayUpdate = asyncHandler( async (req,res) => {
     const {id} = req.params;
     // console.log(id);
-    const {holiday_name,description,destination,duration,price,startDate,endDate,holiday_itinery,holiday_inclusion,holiday_exclusion,reviews} = req.body;
+    const {holiday_name,description,destination,duration,startDate,endDate,holiday_itinery,holiday_inclusion,holiday_exclusion,reviews} = req.body;
     
     if(!holiday_name && !destination && !duration && !holiday_itinery && !holiday_inclusion)
         throw new ApiError(400,"All fields are mendatory");
@@ -53,7 +53,7 @@ const HolidayUpdate = asyncHandler( async (req,res) => {
     const holiday = await Holiday.findOne({_id: id});
 
     if(!holiday) throw new ApiError(400,"Holiday does not exists");
-    
+
     if(!req.finalPrice) throw new ApiError(400,"Price is not calculated for holiday");
     
 

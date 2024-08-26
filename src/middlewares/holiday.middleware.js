@@ -98,7 +98,7 @@ const calculateDuration = asyncHandler( async (req,res, next) => {
 
         req.durationInDays = differenceInDays;
 
-        console.log(differenceInDays)
+        // console.log(differenceInDays)
         next();
 })
 
