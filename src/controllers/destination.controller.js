@@ -16,23 +16,21 @@ const registerDestination = asyncHandler( async (req,res) => {
     
     if(existDestination) throw new ApiError(400,"Destination with the same name cannot be possible.");
 
-    const destThumbnaiLocalPath = req.files?.destThumbnail[0]?.path;
+    // const destThumbnaiLocalPath = req.files?.destThumbnail[0]?.path;
     
-    const destImageLocalPath = req.files?.destImage[0]?.path;
+    // const destImageLocalPath = req.files?.destImage[0]?.path;
 
-    console.log("local ->", destImageLocalPath,destImageLocalPath);
+    // console.log("local ->", destImageLocalPath,destImageLocalPath);
 
-    if(!destThumbnaiLocalPath) throw new ApiError(400, "Thumbnail Files is required");
+    // if(!destThumbnaiLocalPath) throw new ApiError(400, "Thumbnail Files is required");
 
-    const destThumbnail = await uploadOnCloudinary(destThumbnaiLocalPath);
-    const destImage = await uploadOnCloudinary(destImageLocalPath);
+    // const destThumbnail = await uploadOnCloudinary(destThumbnaiLocalPath);
+    // const destImage = await uploadOnCloudinary(destImageLocalPath);
 
-    if(!destThumbnail) throw new ApiError(400, "Thumbnail file is required");
+    // if(!destThumbnail) throw new ApiError(400, "Thumbnail file is required");
 
     const destination = await Destination.create({
         destination_name,
-        destThumbnail : destThumbnail.url,
-        destImage: destImage.url || "",
         country,
         state,
         city,

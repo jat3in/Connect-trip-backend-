@@ -10,7 +10,6 @@ const DestinationSchema = Schema({
     },
     destThumbnail: {
       type: String,
-      required: true,
     },
     destImage: [{
       type: String,
