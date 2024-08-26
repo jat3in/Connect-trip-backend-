@@ -7,7 +7,7 @@ import { PriceCalculator, calculateDuration } from "../middlewares/holiday.middl
 const router = Router();
 
 router.route("/register-holiday").post(verifyJwt,PriceCalculator, calculateDuration ,HolidayRegsiter);
-router.route("/update-holiday/:id").patch(verifyJwt,HolidayUpdate);
+router.route("/update-holiday/:id").patch(verifyJwt,PriceCalculator, calculateDuration ,HolidayUpdate);
 router.route("/upload-holiday-images/:id").patch(verifyJwt,upload.array("holiday_images",5),HolidayImagesUpload)
 router.route("/get-holiday").get(getHolidays);
 router.route("/get-holiday/:id").get(getHolidayById);
