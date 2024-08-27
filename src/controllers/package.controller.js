@@ -6,9 +6,9 @@ import { Package } from "../models/package.model.js";
 
 
 const createPackage = asyncHandler( async (req,res) => {
-    const { package_name,description,package_inclusion,package_destination,package_type,package_itinery,package_duration,duration,avalablities_date} = req.body;
+    const { package_name,package_region,description,package_inclusion,package_destination,package_type,package_itinery,package_duration,duration,avalablities_date} = req.body;
 
-    if( !package_name && !duration && !package_inclusion && !package_type && !package_destination && !package_itinery && !package_duration)
+    if( !package_name && !duration && !package_inclusion && !package_type && !package_destination && !package_itinery && !package_duration && !package_region)
         throw new ApiError(400, "Some what feild is required");  
     
     // console.log(req.finalPrice);
@@ -26,6 +26,7 @@ const createPackage = asyncHandler( async (req,res) => {
 
     const createdPackage = await Package.create({
         package_name,
+        package_region,
         description,
         package_inclusion,
         package_destination,

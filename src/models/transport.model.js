@@ -11,9 +11,14 @@ const TransportSchema = Schema({
     transport_thumbnail: {
         type: String,
     },
-    transport_images: [{
+    transport_from: {
         type: String,
-    }],
+        required: true,
+    },
+    transport_to: {
+        type: String,
+        required: true,
+    },
     provider: {
         type: String,
         required: true,

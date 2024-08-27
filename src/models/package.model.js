@@ -69,6 +69,10 @@ const PackageSchema = Schema({
         index: true,
         unique: true,
     },
+    package_region: {
+        type: String,
+        required: true,
+    },
     package_thumbnail:{
         type: String,
         

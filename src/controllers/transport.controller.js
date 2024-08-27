@@ -69,42 +69,42 @@ const updateThumbnailTransport = asyncHandler( async (req,res) => {
     return res.status(200).json(new ApiResponce(200,updatedThumbnail,"Thumbnail updated successfully"));
 });
 
-const updateImagesTransport = asyncHandler( async (req,res) => {
-    const {id} = req.params;
-    const transportImagesLocalPath = req.files;
-    // console.log(tranportImagesLocalPath);
-    if(!transportImagesLocalPath) throw new  ApiError(400,"Transport Images Files are required");
+// const updateImagesTransport = asyncHandler( async (req,res) => {
+//     const {id} = req.params;
+//     const transportImagesLocalPath = req.files;
+//     // console.log(tranportImagesLocalPath);
+//     if(!transportImagesLocalPath) throw new  ApiError(400,"Transport Images Files are required");
 
-    const imageUrlsArray = transportImagesLocalPath.map(file => file.path);
+//     const imageUrlsArray = transportImagesLocalPath.map(file => file.path);
 
-    // console.log(imageUrlsArray)
-    if(imageUrlsArray.length === 0) throw new ApiError("images files is required");
+//     // console.log(imageUrlsArray)
+//     if(imageUrlsArray.length === 0) throw new ApiError("images files is required");
     
 
-    const serverImage = await Promise.all(
-        imageUrlsArray.map(async (data) => {
+//     const serverImage = await Promise.all(
+//         imageUrlsArray.map(async (data) => {
             
-            const imageUrlServer = await uploadOnCloudinary(data);
-            return imageUrlServer.url; // Return the url of upload image
-        })
-    );
+//             const imageUrlServer = await uploadOnCloudinary(data);
+//             return imageUrlServer.url; // Return the url of upload image
+//         })
+//     );
 
-    // console.log(serverImage)
-    // const destImages = await uploadOnCloudinary(imageUrls);
+//     // console.log(serverImage)
+//     // const destImages = await uploadOnCloudinary(imageUrls);
 
-    if(serverImage.length === 0 ) throw new  ApiError(400,"Error on uploading Images on server");
+//     if(serverImage.length === 0 ) throw new  ApiError(400,"Error on uploading Images on server");
     
-    const updateTransportImages = await Transport.findOneAndUpdate({_id:id},{
-        $set: {
-            transport_images: serverImage
-        }
-    },{new : true});
+//     const updateTransportImages = await Transport.findOneAndUpdate({_id:id},{
+//         $set: {
+//             transport_images: serverImage
+//         }
+//     },{new : true});
 
-    if(!updateTransportImages) throw new ApiError(400,"Transport Images not updated successfully");
+//     if(!updateTransportImages) throw new ApiError(400,"Transport Images not updated successfully");
 
 
-    return res.status(200).json(new ApiResponce(200,updateTransportImages,"Transport Images Updated Successfully"));
-});
+//     return res.status(200).json(new ApiResponce(200,updateTransportImages,"Transport Images Updated Successfully"));
+// });
 
 const getAllTransport = asyncHandler( async (req,res) => {
     const transport = await Transport.find();
@@ -131,4 +131,4 @@ const deleteTransport = asyncHandler(async (req,res) => {
     return res.status(200).json(new ApiResponce(200,{},"tranport deleted successfully"))
 });
 
-export { createTransport, updateImagesTransport, updateThumbnailTransport, deleteTransport, getAllTransport, getTransportById, updateTransport}
+export { createTransport, updateThumbnailTransport, deleteTransport, getAllTransport, getTransportById, updateTransport}
