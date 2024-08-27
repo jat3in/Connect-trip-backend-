@@ -6,8 +6,8 @@ import { uploadOnCloudinary, deleteOnCloudinary } from "../utils/cloudnairy.js";
 
 
 const createTransport = asyncHandler( async (req,res) => {
-    const {transport_type, provider, route, schedule, price,transport_from, transport_to, capacity} = req.body;
-    if(!transport_type && !provider && !route && !schedule && !price && !capacity && !transport_from && !transport_to)
+    const {transport_type, provider, schedule, price,transport_from, transport_to, capacity} = req.body;
+    if(!transport_type && !provider && !schedule && !price && !capacity && !transport_from && !transport_to)
         throw new ApiError(400,"This all fields are required");
 
         if(!req.route) throw new ApiError(400,"Route is required");
@@ -32,15 +32,17 @@ const createTransport = asyncHandler( async (req,res) => {
 
 const updateTransport = asyncHandler( async (req,res) => {
 const {id} = req.params;
-    const {transport_type, provider, route, schedule, price, capacity} = req.body;
-    if(!transport_type && !provider && !route && !schedule && !price && !capacity)
+    const {transport_type, provider, schedule, price,transport_from, transport_to, capacity} = req.body;
+    if(!transport_type && !provider && !schedule && !price && !capacity && !transport_from && !transport_to)
         throw new ApiError(400,"This all fields are required");
 
     const transport = await Transport.findOneAndUpdate({_id:id},{
         $set: {
             transport_type,
             provider,
-            route,
+            transport_from,
+            transport_to,
+            route: req.route,
             schedule,
             price,
             capacity

@@ -7,7 +7,7 @@ import { calculateRoute } from "../middlewares/transport.middleware.js";
 const router = Router();
 
 router.route("/create-transport").post(verifyJwt,calculateRoute,createTransport);
-router.route("/update-transport/:id").patch(verifyJwt,updateTransport);
+router.route("/update-transport/:id").patch(verifyJwt,calculateRoute,updateTransport);
 router.route("/update-thumbnail/:id").patch(verifyJwt,upload.single("transport_thumbnail"),updateThumbnailTransport);
 router.route("/get-transport/:id").get(getTransportById);
 router.route("/get-transport").get(getAllTransport);
