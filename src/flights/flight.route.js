@@ -3,7 +3,7 @@ import { locationSearch } from "./flight.controller.js";
 
 const router = Router();
 
-router.route("/location").get(locationSearch);
+router.route("/search").get(locationSearch);
 
 
 
