@@ -4,15 +4,20 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { Transport } from "../models/transport.model.js";
 import { uploadOnCloudinary, deleteOnCloudinary } from "../utils/cloudnairy.js";
 
+
 const createTransport = asyncHandler( async (req,res) => {
-    const {transport_type, provider, route, schedule, price, capacity} = req.body;
-    if(!transport_type && !provider && !route && !schedule && !price && !capacity)
+    const {transport_type, provider, route, schedule, price,transport_from, transport_to, capacity} = req.body;
+    if(!transport_type && !provider && !route && !schedule && !price && !capacity && !transport_from && !transport_to)
         throw new ApiError(400,"This all fields are required");
+
+        if(!req.route) throw new ApiError(400,"Route is required");
     
     const transport = await Transport.create({
         transport_type,
         provider,
-        route,
+        transport_from,
+        transport_to,
+        route: req.route,
         schedule,
         price,
         capacity
