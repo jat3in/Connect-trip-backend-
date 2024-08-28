@@ -175,5 +175,12 @@ const deletePackage = asyncHandler( async (req,res) => {
     return res.status(200).json(new ApiResponce(200,{},"Package deleted successfully"));
 });
 
+const regionSearch = asyncHandler( async (req,res) => {
+    const {region_name} = req.query;
+    const packages = await Package.find({package_region:region_name});
+    if(!packages) throw new ApiError(400,"Package not find");
+    return res.status(200).json( new ApiResponce(200,packages,"Packages find with region name successfully"));
+});
 
-export {createPackage,updateImagePackage,updateThumbnailPackage,getAllPackage,getAllPackageById,deletePackage, updatePackage}
+
+export {createPackage,updateImagePackage,updateThumbnailPackage,getAllPackage,getAllPackageById,deletePackage, updatePackage, regionSearch}
