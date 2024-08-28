@@ -51,6 +51,11 @@ const TouristSchema = Schema({
     profile_pic: {
         type: String, // string from cloudnairy 
     },
+    role: {
+      type: String,
+      enum: ["Admin","User"],
+      default: "User",
+    },
     password: {
         type: String,
         required: true,

@@ -25,7 +25,7 @@ const generateAccessAndRefereshTokens = async (touristId) =>{
 
 const RegisterTourist = asyncHandler( async ( req, res) => {
 
-    const { fullName, email,phone, password} = req.body;
+    const { fullName, email,phone, password, role} = req.body;
     console.log("tourist data :- ", fullName,email,password);
 
     if([fullName,email,phone,password].some((field) => field.trim() === "")){
@@ -57,10 +57,11 @@ const RegisterTourist = asyncHandler( async ( req, res) => {
         phone,
         password,
         profile_pic: profile_pic?.url || "",
+        role
     });
     console.log("tourist -> ", tourist);
     const createdTourist = await Tourist.findById(tourist?._id).select(
-        "-password -refreshToken"
+        "-password -refreshToken -role"
     )
     if(!createdTourist) {
         throw new ApiError(500, "Something went wrong while registering the Tourist")

@@ -16,10 +16,7 @@ app.use(express.urlencoded({ extended: true, limit: "20kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
-// admin routes goes here....
 
-import adminRouter from "./routes/admin/admin.routes.js";
-app.use("/api/v1/admin", adminRouter);
 
 // tourist route import here..
 import touristRouter from "./routes/user/tourist.routes.js";
