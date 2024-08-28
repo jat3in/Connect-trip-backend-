@@ -30,6 +30,7 @@ const adminAuth = asyncHandler( async (req,res,next) => {
         const tourist = await Tourist.findById(decodeToken._id).select("-password -refreshToken");
 
         if(tourist.role === "Admin"){
+            req.tourist = tourist;
             next();
         }
         
