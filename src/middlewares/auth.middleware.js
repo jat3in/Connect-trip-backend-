@@ -23,7 +23,7 @@ const verifyJwt = asyncHandler( async (req, res, next) => {
 });
 
 const adminAuth = asyncHandler( async (req,res,next) => {
-    if(!req.tourist && !req.tourist.role === "Admin") throw new ApiError(400,"Access Denied");
+    if(req.tourist.role === "User") throw new ApiError(400,"Access Denied");
     next();
 });
 
