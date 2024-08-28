@@ -73,6 +73,7 @@ const PackageSchema = Schema({
         type: String,
         required: true,
         lowercase: true,
+        index: true,
         
     },
     package_thumbnail:{
