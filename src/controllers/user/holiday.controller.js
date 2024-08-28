@@ -1,8 +1,8 @@
-import { asyncHandler } from "../utils/asyncHandler.js";
-import { ApiError } from "../utils/ApiError.js";
-import { ApiResponce } from "../utils/ApiResponce.js";
-import { Holiday } from "../models/holiday.model.js";
-import { uploadOnCloudinary , deleteOnCloudinary } from "../utils/cloudnairy.js"
+import { asyncHandler } from "../../utils/asyncHandler.js";
+import { ApiError } from "../../utils/ApiError.js";
+import { ApiResponce } from "../../utils/ApiResponce.js";
+import { Holiday } from "../../models/holiday.model.js";
+import { uploadOnCloudinary , deleteOnCloudinary } from "../../utils/cloudnairy.js"
 
 const HolidayRegsiter = asyncHandler( async (req,res) => {
     const {holiday_name,description,destination,duration,startDate,endDate,holiday_itinery,holiday_inclusion,holiday_exclusion,reviews} = req.body;

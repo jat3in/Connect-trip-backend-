@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { upload } from "../middlewares/multer.middleware.js";
-import { verifyJwt } from "../middlewares/auth.middleware.js";
-import { createAccomodation, deleteAccomodationById, getAccomodationById, getAllAccomodation, updateAccomodationById, updateAccomodationImageById, updateAccomodationThumbnail } from "../controllers/accomodation.controller.js";
+import { upload } from "../../middlewares/multer.middleware.js";
+import { verifyJwt } from "../../middlewares/auth.middleware.js";
+import { createAccomodation, deleteAccomodationById, getAccomodationById, getAllAccomodation, updateAccomodationById, updateAccomodationImageById, updateAccomodationThumbnail } from "../../controllers/user/accomodation.controller.js";
 
 const router = Router();
 

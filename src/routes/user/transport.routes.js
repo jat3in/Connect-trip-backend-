@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { createTransport, getTransportById, updateThumbnailTransport, updateTransport, deleteTransport, getAllTransport } from "../controllers/transport.controller.js";
-import { upload } from "../middlewares/multer.middleware.js";
-import { verifyJwt } from "../middlewares/auth.middleware.js";
-import { calculateRoute } from "../middlewares/transport.middleware.js";
+import { createTransport, getTransportById, updateThumbnailTransport, updateTransport, deleteTransport, getAllTransport } from "../../controllers/user/transport.controller.js";
+import { upload } from "../../middlewares/multer.middleware.js";
+import { verifyJwt } from "../../middlewares/auth.middleware.js";
+import { calculateRoute } from "../../middlewares/transport.middleware.js";
 
 const router = Router();
 

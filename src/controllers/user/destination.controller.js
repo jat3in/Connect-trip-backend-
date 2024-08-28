@@ -1,8 +1,8 @@
-import { Destination } from "../models/destination.model.js";
-import { ApiError } from "../utils/ApiError.js";
-import { ApiResponce } from "../utils/ApiResponce.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
-import { deleteOnCloudinary, uploadOnCloudinary } from "../utils/cloudnairy.js";
+import { Destination } from "../../models/destination.model.js";
+import { ApiError } from "../../utils/ApiError.js";
+import { ApiResponce } from "../../utils/ApiResponce.js";
+import { asyncHandler } from "../../utils/asyncHandler.js";
+import { deleteOnCloudinary, uploadOnCloudinary } from "../../utils/cloudnairy.js";
 
 
 

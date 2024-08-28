@@ -1,8 +1,8 @@
-import { Accomodation } from "../models/accomodation.model.js";
-import { ApiError } from "../utils/ApiError.js";
-import { ApiResponce } from "../utils/ApiResponce.js";
-import { deleteOnCloudinary, uploadOnCloudinary } from "../utils/cloudnairy.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
+import { Accomodation } from "../../models/accomodation.model.js";
+import { ApiError } from "../../utils/ApiError.js";
+import { ApiResponce } from "../../utils/ApiResponce.js";
+import { deleteOnCloudinary, uploadOnCloudinary } from "../../utils/cloudnairy.js";
+import { asyncHandler } from "../../utils/asyncHandler.js";
 
 
 const createAccomodation = asyncHandler( async (req,res) => {

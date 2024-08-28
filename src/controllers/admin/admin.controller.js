@@ -1,8 +1,8 @@
-import { asyncHandler } from "../utils/asyncHandler.js";
-import { Admin } from "../models/admin.model.js";
-import { ApiError } from "../utils/ApiError.js";
-import { ApiResponce } from "../utils/ApiResponce.js";
-import { uploadOnCloudinary, deleteOnCloudinary } from "../utils/cloudnairy.js";
+import { asyncHandler } from "../../utils/asyncHandler.js";
+import { Admin } from "../../models/admin.model.js";
+import { ApiError } from "../../utils/ApiError.js";
+import { ApiResponce } from "../../utils/ApiResponce.js";
+import { uploadOnCloudinary, deleteOnCloudinary } from "../../utils/cloudnairy.js";
 
 
 const generateAccessAndRefereshTokens = async (adminId) =>{
@@ -24,39 +24,42 @@ const generateAccessAndRefereshTokens = async (adminId) =>{
 }
 
 const regiterAdmin = asyncHandler( async (req,res) => {
-    const { fullName, email,phone, password} = req.body;
-    // console.log("admin data :- ", fullName,email,password);
+    // const { fullName, email,phone, password} = req.body;
+    // // console.log("admin data :- ", fullName,email,password);
 
-    if([fullName,email,phone,password].some((field) => field.trim() === "")){
-        throw new ApiError(400, "All Fields are required")
-    }
+    // if([fullName,email,phone,password].some((field) => field.trim() === "")){
+    //     throw new ApiError(400, "All Fields are required")
+    // }
 
-    const existedAdmin = await Admin.findOne({
-        $or: [{ phone }, { email }]
-    })
+    // const existedAdmin = await Admin.findOne({
+    //     $or: [{ phone }, { email }]
+    // })
 
 
-    if (existedAdmin) {
-        throw new ApiError(409, "Admin with email or Username already exists")
-    }
+    // if (existedAdmin) {
+    //     throw new ApiError(409, "Admin with email or Username already exists")
+    // }
 
-    const admin = await Admin.create({
-        fullName,
-        email,
-        phone,
-        password
-    });
-    console.log("admin -> ", admin);
-    const createdAdmin = await Admin.findById(admin?._id).select(
-        "-password -refreshToken"
-    )
-    if(!createdAdmin) {
-        throw new ApiError(500, "Something went wrong while registering the Admin")
-    }
+    // const admin = await Admin.create({
+    //     fullName,
+    //     email,
+    //     phone,
+    //     password
+    // });
+    // console.log("admin -> ", admin);
+    // const createdAdmin = await Admin.findById(admin?._id).select(
+    //     "-password -refreshToken"
+    // )
+    // if(!createdAdmin) {
+    //     throw new ApiError(500, "Something went wrong while registering the Admin")
+    // }
      
-    return res.status(201).json(
-        new ApiResponce(200, createdAdmin , "Admin registered Successfully")
-    )
+    // return res.status(201).json(
+    //     new ApiResponce(200, createdAdmin , "Admin registered Successfully")
+    // )
+
+    return res.send("listning on the login admin route");
+
 });
 
 

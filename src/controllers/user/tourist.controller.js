@@ -1,8 +1,8 @@
-import { asyncHandler } from "../utils/asyncHandler.js";
-import { ApiError } from "../utils/ApiError.js";
-import { ApiResponce } from "../utils/ApiResponce.js"
-import { Tourist } from "../models/tourists.model.js";
-import { deleteOnCloudinary, uploadOnCloudinary } from "../utils/cloudnairy.js";
+import { asyncHandler } from "../../utils/asyncHandler.js";
+import { ApiError } from "../../utils/ApiError.js";
+import { ApiResponce } from "../../utils/ApiResponce.js"
+import { Tourist } from "../../models/tourists.model.js";
+import { deleteOnCloudinary, uploadOnCloudinary } from "../../utils/cloudnairy.js";
 
 const generateAccessAndRefereshTokens = async (touristId) =>{
     try {

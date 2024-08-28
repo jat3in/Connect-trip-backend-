@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { regiterAdmin, loginAdmin, getAdminById, getAllAdmin, getCurrentAdmin, deleteAdmin, adminProfilePic, updateAdmin, changeCurrentPassword} from "../controllers/admin.controller.js";
+import { regiterAdmin, loginAdmin, getAdminById, getAllAdmin, getCurrentAdmin, deleteAdmin, adminProfilePic, updateAdmin, changeCurrentPassword} from "../../controllers/admin/admin.controller.js";
 const router = Router();
 
 router.route("/register").post(regiterAdmin);

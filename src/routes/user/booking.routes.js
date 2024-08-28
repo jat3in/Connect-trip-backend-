@@ -1,6 +1,6 @@
 import {Router} from "express";
-import {createBooking,updateBooking,getAllBooking,getBookingById,deleteBooking} from "../controllers/booking.controller.js";
-import { verifyJwt } from "../middlewares/auth.middleware.js";
+import {createBooking,updateBooking,getAllBooking,getBookingById,deleteBooking} from "../../controllers/user/booking.controller.js";
+import { verifyJwt } from "../../middlewares/auth.middleware.js";
 const router = Router();
 
 

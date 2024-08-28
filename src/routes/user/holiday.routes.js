@@ -1,8 +1,8 @@
 import {Router} from "express";
-import { verifyJwt } from "../middlewares/auth.middleware.js";
-import { upload } from "../middlewares/multer.middleware.js";
-import { deleteHolidayById, getHolidayById, getHolidays, HolidayImagesUpload, HolidayRegsiter, HolidayUpdate } from "../controllers/holiday.controller.js";
-import { PriceCalculator, calculateDuration } from "../middlewares/holiday.middleware.js";
+import { verifyJwt } from "../../middlewares/auth.middleware.js";
+import { upload } from "../../middlewares/multer.middleware.js";
+import { deleteHolidayById, getHolidayById, getHolidays, HolidayImagesUpload, HolidayRegsiter, HolidayUpdate } from "../../controllers/user/holiday.controller.js";
+import { PriceCalculator, calculateDuration } from "../../middlewares/holiday.middleware.js";
 
 const router = Router();
 

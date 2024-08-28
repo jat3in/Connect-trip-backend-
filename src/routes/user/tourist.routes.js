@@ -1,7 +1,7 @@
 import { Router } from "express"
-import { verifyJwt } from "../middlewares/auth.middleware.js";
-import { changeCurrentPassword, getCurrentTourist, loginTourist, logoutTourist, refreshAccessToken, RegisterTourist, updateAccountDetails, updateProfilePic } from "../controllers/tourist.controller.js";
-import { upload } from "../middlewares/multer.middleware.js";
+import { verifyJwt } from "../../middlewares/auth.middleware.js";
+import { changeCurrentPassword, getCurrentTourist, loginTourist, logoutTourist, refreshAccessToken, RegisterTourist, updateAccountDetails, updateProfilePic } from "../../controllers/user/tourist.controller.js";
+import { upload } from "../../middlewares/multer.middleware.js";
 
 
 

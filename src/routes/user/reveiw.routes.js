@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { verifyJwt } from "../middlewares/auth.middleware.js";
-import { createReview, updateReview, deleteReveiw, getReviewId, getReview} from "../controllers/reveiw.controller.js";
+import { verifyJwt } from "../../middlewares/auth.middleware.js";
+import { createReview, updateReview, deleteReveiw, getReviewId, getReview} from "../../controllers/user/reveiw.controller.js";
 const router = Router();
 
 router.route("/reveiw-create").post(verifyJwt,createReview);

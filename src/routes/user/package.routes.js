@@ -1,8 +1,8 @@
 import {Router} from "express";
-import { upload } from "../middlewares/multer.middleware.js";
-import { createPackage, deletePackage, getAllPackage, getAllPackageById, updateImagePackage, updatePackage, updateThumbnailPackage, regionSearch } from "../controllers/package.controller.js";
-import { verifyJwt } from "../middlewares/auth.middleware.js";
-import { PriceCalculator, calculateDuration } from "../middlewares/package.middleware.js";
+import { upload } from "../../middlewares/multer.middleware.js";
+import { createPackage, deletePackage, getAllPackage, getAllPackageById, updateImagePackage, updatePackage, updateThumbnailPackage, regionSearch } from "../../controllers/user/package.controller.js";
+import { verifyJwt } from "../../middlewares/auth.middleware.js";
+import { PriceCalculator, calculateDuration } from "../../middlewares/package.middleware.js";
 
 const router = Router();
 

@@ -1,7 +1,7 @@
-import { asyncHandler } from "../utils/asyncHandler.js";
-import { ApiError } from "../utils/ApiError.js";
-import { ApiResponce } from "../utils/ApiResponce.js";
-import { Booking } from "../models/booking.model.js";
+import { asyncHandler } from "../../utils/asyncHandler.js";
+import { ApiError } from "../../utils/ApiError.js";
+import { ApiResponce } from "../../utils/ApiResponce.js";
+import { Booking } from "../../models/booking.model.js";
 
 const createBooking = asyncHandler( async (req,res) => {
     const {tourist_id,accomodation_id,package_id,transport_id,holiday_id,destination_id,activity_id} = req.query;

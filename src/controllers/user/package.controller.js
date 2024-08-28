@@ -1,8 +1,8 @@
-import { ApiError } from "../utils/ApiError.js";
-import { ApiResponce } from "../utils/ApiResponce.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
-import { uploadOnCloudinary, deleteOnCloudinary } from "../utils/cloudnairy.js";
-import { Package } from "../models/package.model.js";
+import { ApiError } from "../../utils/ApiError.js";
+import { ApiResponce } from "../../utils/ApiResponce.js";
+import { asyncHandler } from "../../utils/asyncHandler.js";
+import { uploadOnCloudinary, deleteOnCloudinary } from "../../utils/cloudnairy.js";
+import { Package } from "../../models/package.model.js";
 
 
 const createPackage = asyncHandler( async (req,res) => {
