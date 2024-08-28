@@ -54,19 +54,19 @@ https://travel-backend-app-4j1v.onrender.com/api/v1/tourist/current-tourist
 
 ## Holiday
 
-1. Holiday Register Api : POST
+1. Holiday Register Api : POST Admin Require
 
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/holiday/register-holiday
 ```
 
-2. Holiday Images Upload And Update Images Api : PATCH
+2. Holiday Images Upload And Update Images Api : PATCH Admin Require
 
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/holiday/upload-holiday-images/:id
 ```
 
-3. Holiday Update By Id Api : PATCH
+3. Holiday Update By Id Api : PATCH Admin Require
 
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/holiday/update-holiday/:id
@@ -84,7 +84,7 @@ https://travel-backend-app-4j1v.onrender.com/api/v1/holiday/get-holiday
 https://travel-backend-app-4j1v.onrender.com/api/v1/holiday/get-holiday/:id
 ```
 
-6. Delete Holiday By Id Api : DELETE
+6. Delete Holiday By Id Api : DELETE Admin Require
 
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/holiday/delete-holiday/:id
@@ -92,23 +92,23 @@ https://travel-backend-app-4j1v.onrender.com/api/v1/holiday/delete-holiday/:id
 
 ## Destination
 
-1. Destination Register / Create Api : POST
+1. Destination Register / Create Api : POST Admin Require
 
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/destination/register-destination
 ```
-2. Destination Update By Id Api : PATCH
+2. Destination Update By Id Api : PATCH Admin Require
 
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/destination/update-destination/:id
 ```
-3. Destination Thumbnail Update By Id Api : PATCH
+3. Destination Thumbnail Update By Id Api : PATCH Admin Require
 
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/destination/update-destthumbnail/:id
 ```
 
-4. Destination Images Update By Id Api : PATCH
+4. Destination Images Update By Id Api : PATCH Admin Require
 
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/destination/update-destimages/:id
@@ -122,29 +122,29 @@ https://travel-backend-app-4j1v.onrender.com/api/v1/destination/get-destination/
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/destination/get-destination
 ```
-7. Delete Destination By Id Api : DELETE
+7. Delete Destination By Id Api : DELETE Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/destination/delete-destination/:id
 ```
 
 ## Accomodation
 
-1. Accomodation Create Api : POST
+1. Accomodation Create Api : POST Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/accomodation/create-accomodation
 ```
-2. Accomodation Update By Id Api : PATCH
+2. Accomodation Update By Id Api : PATCH Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/accomodation/update-accomodation/:id
 ```
 
-3. Accomodation Update Thumbnail Image By Id : PATCH
+3. Accomodation Update Thumbnail Image By Id : PATCH Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/accomodation/update-accomodation-thumbnail/:id
 ```
 
-4. Accomodation Update Images By Id : PATCH
-```
+4. Accomodation Update Images By Id : PATCH Admin Require
+``` 
 https://travel-backend-app-4j1v.onrender.com/api/v1/accomodation/update-accomodation-images/:id
 ```
 
@@ -158,7 +158,7 @@ https://travel-backend-app-4j1v.onrender.com/api/v1/accomodation/accomodation
 https://travel-backend-app-4j1v.onrender.com/api/v1/accomodation/accomodation/:id
 ```
 
-7. Delete Accomodation By Id : DELETE
+7. Delete Accomodation By Id : DELETE Admin Require
 
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/accomodation/delete-accomodation/:id
@@ -166,23 +166,23 @@ https://travel-backend-app-4j1v.onrender.com/api/v1/accomodation/delete-accomoda
 
 ## Activity
 
-1. Create Activity Api : POST
+1. Create Activity Api : POST Admin Require
 
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/activity/create-activity
 ```
 
-2. Update Activity By Id : PATCH
+2. Update Activity By Id : PATCH Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/activity/update-activity/:id
 ```
 
-3. Update Activity Thumbnail By Id : PATCH
+3. Update Activity Thumbnail By Id : PATCH Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/activity/update-activity-thumbnail/:id
 ```
 
-4. Update Activity Images By Id : PATCH
+4. Update Activity Images By Id : PATCH Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/activity/update-activity-images/:id
 ```
@@ -197,7 +197,7 @@ https://travel-backend-app-4j1v.onrender.com/api/v1/activity/get-all-activity/:i
 https://travel-backend-app-4j1v.onrender.com/api/v1/activity/get-all-activity
 ```
 
-7. Delete Activity By Id : DELETE
+7. Delete Activity By Id : DELETE Admin Require
 
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/activity/delete-activity/66bc382ddcb92de99bb55c84
@@ -205,22 +205,22 @@ https://travel-backend-app-4j1v.onrender.com/api/v1/activity/delete-activity/66b
 
 ## Package
 
-1. Created Package Api : POST
+1. Created Package Api : POST Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/package/create-package
 ```
 
-2. Update Package By Id Api : PATCH
+2. Update Package By Id Api : PATCH Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/package/update-package/:id
 ```
 
-3. Package Thumbnail Update By Id Api : PATCH
+3. Package Thumbnail Update By Id Api : PATCH Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/package/update-package-thumbnail/:id
 ```
 
-4. Package Images Update By Id Api : PATCH
+4. Package Images Update By Id Api : PATCH Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/package/update-package-images/:id
 ```
@@ -238,29 +238,29 @@ https://travel-backend-app-4j1v.onrender.com/api/v1/package/package/:id
 https://travel-backend-app-4j1v.onrender.com/api/v1/package/search?region_name
 ```
 
-8. Delete Package By Id Api : DELETE
+8. Delete Package By Id Api : DELETE Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/package/delete-package/:id
 ```
 
 ## Transport
 
-1. Created transport Api : POST
+1. Created transport Api : POST Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/transport/create-transport
 ```
 
-2. Update transport By Id Api : PATCH
-```
+2. Update transport By Id Api : PATCH Admin Require
+``` 
 https://travel-backend-app-4j1v.onrender.com/api/v1/transport/update-transport/:id
 ```
 
-3. transport Thumbnail Update By Id Api : PATCH
+3. transport Thumbnail Update By Id Api : PATCH Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/transport/update-thumbnail/:id
 ```
 
-4. transport Images Update By Id Api : PATCH
+4. transport Images Update By Id Api : PATCH Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/transport/update-images/:id
 ```
@@ -274,19 +274,19 @@ https://travel-backend-app-4j1v.onrender.com/api/v1/transport/get-transport
 https://travel-backend-app-4j1v.onrender.com/api/v1/transport/get-transport/:id
 ```
 
-7. Delete transport By Id Api : DELETE
+7. Delete transport By Id Api : DELETE Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/transport/delete-transport/:id
 ```
 
 ## Ratings
 
-1. Created Reveiw Api : POST
+1. Created Reveiw Api : POST Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/reveiw/reveiw-create
 ```
 
-2. Update Reveiw By Id Api : PATCH
+2. Update Reveiw By Id Api : PATCH Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/reveiw/reveiw-edit/:id
 ```
@@ -301,7 +301,7 @@ https://travel-backend-app-4j1v.onrender.com/api/v1/reveiw/get-reveiw
 https://travel-backend-app-4j1v.onrender.com/api/v1/reveiw/get-reveiw/:id
 ```
 
-5. Delete Reveiws By Id Api : DELETE
+5. Delete Reveiws By Id Api : DELETE Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/reveiw/delete-reveiw/:id
 ```
@@ -318,12 +318,12 @@ https://travel-backend-app-4j1v.onrender.com/api/v1/booking/create-booking
 https://travel-backend-app-4j1v.onrender.com/api/v1/booking/update-booking/:id
 ```
 
-3. Get All Booking Api : GET
+3. Get All Booking Api : GET Admin Require
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/booking/get-booking
 ```
 
-4. Get All Booking By Id Api : GET
+4. Get All Booking By Id Api : GET 
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/booking/get-booking/:id
 ```
