@@ -233,8 +233,12 @@ https://travel-backend-app-4j1v.onrender.com/api/v1/package/package
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/package/package/:id
 ```
+7. Get Packages By Id Api : GET
+```
+https://travel-backend-app-4j1v.onrender.com/api/v1/package/search?region_name
+```
 
-7. Delete Package By Id Api : DELETE
+8. Delete Package By Id Api : DELETE
 ```
 https://travel-backend-app-4j1v.onrender.com/api/v1/package/delete-package/:id
 ```
