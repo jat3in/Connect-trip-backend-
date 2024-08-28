@@ -23,21 +23,8 @@ const verifyJwt = asyncHandler( async (req, res, next) => {
 });
 
 const adminAuth = asyncHandler( async (req,res,next) => {
-    try {
-        const token = req.cookies?.accessToken || req.header("Authorization"?.replace("Bearer ", ""));
-        if(!token) throw new ApiError(401, "Unauthorized Request");
-        const decodeToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-        const tourist = await Tourist.findById(decodeToken._id).select("-password -refreshToken");
-
-        if(tourist.role === "Admin"){
-            req.tourist = tourist;
-            next();
-        }
-        
-    } catch (error) {
-        throw new ApiError(401, error?.message || "Invalid Access Token")
-    }
-
+    if(!req.tourist && !req.tourist.role === "Admin") throw new ApiError(400,"Access Denied");
+    next();
 });
 
 
