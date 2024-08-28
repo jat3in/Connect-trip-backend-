@@ -5,10 +5,58 @@ import { ApiResponce } from "../utils/ApiResponce.js";
 import { uploadOnCloudinary, deleteOnCloudinary } from "../utils/cloudnairy.js";
 
 
+const generateAccessAndRefereshTokens = async (adminId) =>{
+    try {
+        const admin = await Admin.findById(adminId);
+        const accessToken = admin.generateAcessToken();
+        const refreshToken = admin.generateRefreshToken();
+
+        tourist.refreshToken = refreshToken
+        await admin.save({ validateBeforeSave: false })
+
+        return {accessToken, refreshToken}
+
+
+    } catch (error) {
+        console.log(error);
+        throw new ApiError(500, "Something went wrong while generating referesh and access token")
+    }
+}
+
 const regiterAdmin = asyncHandler( async (req,res) => {
+    const { fullName, email,phone, password} = req.body;
+    // console.log("admin data :- ", fullName,email,password);
+
+    if([fullName,email,phone,password].some((field) => field.trim() === "")){
+        throw new ApiError(400, "All Fields are required")
+    }
+
+    const existedAdmin = await Admin.findOne({
+        $or: [{ phone }, { email }]
+    })
 
 
-    return res.send("listning on the admin register route");
+    if (existedAdmin) {
+        throw new ApiError(409, "Admin with email or Username already exists")
+    }
+
+    const admin = await Admin.create({
+        fullName,
+        email,
+        phone,
+        password
+    });
+    console.log("admin -> ", admin);
+    const createdAdmin = await Admin.findById(admin?._id).select(
+        "-password -refreshToken"
+    )
+    if(!createdAdmin) {
+        throw new ApiError(500, "Something went wrong while registering the Admin")
+    }
+     
+    return res.status(201).json(
+        new ApiResponce(200, createdAdmin , "Admin registered Successfully")
+    )
 });
 
 
