@@ -77,6 +77,10 @@ import bookingRouter from "./routes/user/booking.routes.js";
 app.use("/api/v1/booking", bookingRouter);
 
 
+// admin booking router
+import adminBookingRouter from "./routes/admin/booking.routes.js";
+app.use("/api/v1/admin",adminBookingRouter);
+
 
 
 
