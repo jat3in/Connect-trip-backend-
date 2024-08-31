@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { verifyJwt } from "../../middlewares/auth.middleware.js";
-import { changeCurrentPassword, getCurrentTourist, loginTourist, logoutTourist, refreshAccessToken, RegisterTourist, updateAccountDetails, updateProfilePic } from "../../controllers/user/tourist.controller.js";
+import { changeCurrentPassword, getCurrentTourist, loginTourist, logoutTourist, refreshAccessToken, RegisterTourist, updateAccountDetails, updateProfilePic,getAllSingleTourist } from "../../controllers/user/tourist.controller.js";
 import { upload } from "../../middlewares/multer.middleware.js";
 
 
@@ -20,5 +20,6 @@ router.route("/change-password").patch(verifyJwt,changeCurrentPassword);
 router.route("/current-tourist").get(verifyJwt, getCurrentTourist);
 router.route("/update-tourist").patch(verifyJwt, updateAccountDetails);
 router.route("/profile-pic").patch(verifyJwt, upload.single("profile_pic"), updateProfilePic);
+router.route("/get-tourist/:id").get(getAllSingleTourist);
 
 export default router;

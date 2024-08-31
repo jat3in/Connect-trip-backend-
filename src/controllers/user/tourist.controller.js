@@ -269,6 +269,14 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
         .json(new ApiResponce(200, tourist, "Account details updated successfully"));
 });
 
+const getAllSingleTourist = asyncHandler( async (req,res) => {
+    const {id} = req.params;
+    const tourist = await Tourist.findOne({_id: id});
+    if(!tourist) throw new ApiError(400,"Tourist not found");
+    return res.status(200).json(new ApiResponce(200,tourist,"Tourist found successfully"))
+
+
+});
 
 
 
@@ -281,7 +289,7 @@ const updateProfilePic = asyncHandler(async(req, res) => {
 
     //TODO: delete old image - assignment
 
-    const deletePrivious = await deleteOnCloudinary(req.tourist?.profile_pic);
+    // const deletePrivious = await deleteOnCloudinary(req.tourist?.profile_pic);
 
     const profile_pic = await uploadOnCloudinary(profilePicLocalPath)
 
@@ -317,5 +325,6 @@ export { RegisterTourist,
     changeCurrentPassword, 
     getCurrentTourist,
     updateProfilePic,
+    getAllSingleTourist
     
 }
