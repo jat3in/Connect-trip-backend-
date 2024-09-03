@@ -25,10 +25,10 @@ const generateAccessAndRefereshTokens = async (touristId) =>{
 
 const RegisterTourist = asyncHandler( async ( req, res) => {
 
-    const { fullName, email,phone, password, role} = req.body;
+    const { fullName, email, phone, password, role} = req.body;
     console.log("tourist data :- ", fullName,email,password);
 
-    if([fullName,email,phone,password].some((field) => field.trim() === "")){
+    if([fullName,email,password].some((field) => field.trim() === "")){
         throw new ApiError(400, "All Fields are required")
     }
 
