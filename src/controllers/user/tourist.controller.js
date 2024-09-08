@@ -25,7 +25,7 @@ const generateAccessAndRefereshTokens = async (touristId) =>{
 
 const RegisterTourist = asyncHandler( async ( req, res) => {
 
-    const { fullName, email, phone, password, role} = req.body;
+    const { fullName, email, password, role} = req.body;
     console.log("tourist data :- ", fullName,email,password);
 
     if([fullName,email,password].some((field) => field.trim() === "")){
@@ -33,7 +33,7 @@ const RegisterTourist = asyncHandler( async ( req, res) => {
     }
 
     const existedTourist = await Tourist.findOne({
-        $or: [{ phone }, { email }]
+        email 
     })
 
 
@@ -54,7 +54,6 @@ const RegisterTourist = asyncHandler( async ( req, res) => {
     const tourist = await Tourist.create({
         fullName,
         email,
-        phone,
         password,
         profile_pic: profile_pic?.url || "",
         role
