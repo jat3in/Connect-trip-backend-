@@ -80,17 +80,15 @@ const loginTourist = asyncHandler(async (req, res) =>{
     //access and referesh token
     //send cookie
 
-    const {email, phone, password} = req.body
+    const {email, password} = req.body
     console.log(email);
 
-    if (!phone && !email) {
+    if (!email) {
         throw new ApiError(400, "phone or email is required")
     }
     
 
-    const tourist = await Tourist.findOne({
-        $or: [{phone}, {email}]
-    })
+    const tourist = await Tourist.findOne({email})
 
     if (!tourist) {
         throw new ApiError(404, "User does not exist")
