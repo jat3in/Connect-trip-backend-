@@ -84,7 +84,7 @@ const loginTourist = asyncHandler(async (req, res) =>{
     console.log(email);
 
     if (!email) {
-        throw new ApiError(400, "phone or email is required")
+        return res.status(400).json(new ApiError(400, "phone or email is required"));
     }
     
 
