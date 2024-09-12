@@ -91,13 +91,13 @@ const loginTourist = asyncHandler(async (req, res) =>{
     const tourist = await Tourist.findOne({email})
 
     if (!tourist) {
-        throw new ApiError(404, "User does not exist")
+        return res.status(404).json(new ApiError(404, "Invalid Credentials"));
     }
 
    const isPasswordValid = await tourist.isPasswordCorrect(password)
 
    if (!isPasswordValid) {
-    throw new ApiError(401, "Invalid user credentials")
+    return res.status(404).json(new ApiError(404, "Invalid Credentials"));
     }
 
    const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(tourist._id);
@@ -120,7 +120,7 @@ const loginTourist = asyncHandler(async (req, res) =>{
             {
                 tourist: loggedInTourist
             },
-            "tourist logged In Successfully"
+            "Logged In Successfully"
         )
     )
 
