@@ -225,13 +225,23 @@ const changeCurrentPassword = asyncHandler(async(req, res) => {
 })
 
 const getCurrentTourist = asyncHandler(async(req, res) => {
-    return res
-    .status(200)
-    .json(new ApiResponce(
-        200,
-        req.tourist,
-        "tourist fetched successfully"
-    ))
+    if(req.tourist){
+             return res
+            .status(200)
+            .json(new ApiResponce(
+                200,
+                req.tourist,
+                "tourist fetched successfully"
+            ))
+    }
+    else{
+            return res
+            .status(400)
+            .json(new ApiResponce(
+                400,
+                "unable to fetch tourist"
+            ))
+    }
 })
 const updateAccountDetails = asyncHandler(async (req, res) => {
     const { fullName, email, gender, nationality, phone, travel_preferences, martial_status, pincode, state } = req.body;
