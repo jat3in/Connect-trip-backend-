@@ -1,5 +1,15 @@
 import mongoose, {Schema} from "mongoose"
 
+
+const CoordinateSchema = Schema({
+  latitude:{
+    type: Schema.Types.Decimal128
+  },
+  longitude:{
+    type: Schema.Types.Decimal128
+  }
+})
+
 const locationSchema = Schema({
     country: {
       type: String,
@@ -12,7 +22,10 @@ const locationSchema = Schema({
     },
     address: {
       type: String,
-    }
+    },
+    coordinate: {
+      type: CoordinateSchema,
+    },
   });
 
 //   const PriceRange = Schema({

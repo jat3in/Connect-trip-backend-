@@ -27,5 +27,10 @@ const adminAuth = asyncHandler( async (req,res,next) => {
     next();
 });
 
+const hotelAuth = asyncHandler( async (req,res,next) => {
+    if(!req.tourist.role === "Hotels") throw new ApiError(400,"Access Denied");
+    next();
+});
 
-export {verifyJwt, adminAuth}
+
+export {verifyJwt, adminAuth, hotelAuth}
