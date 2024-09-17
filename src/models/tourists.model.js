@@ -52,7 +52,7 @@ const TouristSchema = Schema({
     },
     role: {
       type: String,
-      enum: ["Admin","User","Accomodation","Activities","Tranport"],
+      enum: ["Admin","User","Accomodation","Activities","Transport"],
       default: "User",
     },
     password: {
