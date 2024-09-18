@@ -60,7 +60,7 @@ const RegisterTourist = asyncHandler( async ( req, res) => {
     });
     console.log("tourist -> ", tourist);
     const createdTourist = await Tourist.findById(tourist?._id).select(
-        "-password -refreshToken -role"
+        "-password -refreshToken "
     )
     if(!createdTourist) {
         throw new ApiError(500, "Something went wrong while registering the Tourist")
